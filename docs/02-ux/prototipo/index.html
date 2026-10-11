@@ -1,0 +1,302 @@
+<title>Amigo Invisible · Prototipo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@600;700&display=swap">
+<style>
+/* Layout: una columna de móvil (máx. 30rem), una acción principal por pantalla, barra de prototipo arriba. */
+:root {
+  --bg: #ffffff;
+  --surface: #f3f4f9;
+  --ink: #1b1f3b;
+  --ink-soft: #3f4466;
+  --line: #c9cce0;
+  --ribbon: #a50f2a;       /* acento: lazo del regalo (7.4:1 sobre blanco) */
+  --ribbon-ink: #ffffff;
+  --pine: #17604a;         /* estado correcto */
+  --pine-bg: #e3f2ec;
+  --amber-bg: #fff3d6;
+  --amber: #6b4a00;
+  --proto-bg: #1b1f3b;
+  --proto-fg: #ffffff;
+  --font-display: "Lexend", "Atkinson Hyperlegible", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --radius: 14px;
+  --tap: 3.75rem;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11142a; --surface: #1d2142; --ink: #f4f5fb; --ink-soft: #c9cce6; --line: #3c4170;
+  --ribbon: #ff8fa0; --ribbon-ink: #11142a; --pine: #7fdcb8; --pine-bg: #143a30;
+  --amber-bg: #3d3010; --amber: #ffd98a; --proto-bg: #000000; --proto-fg: #ffffff; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #11142a; --surface: #1d2142; --ink: #f4f5fb; --ink-soft: #c9cce6; --line: #3c4170;
+  --ribbon: #ff8fa0; --ribbon-ink: #11142a; --pine: #7fdcb8; --pine-bg: #143a30;
+  --amber-bg: #3d3010; --amber: #ffd98a; --proto-bg: #000000; --proto-fg: #ffffff; color-scheme: dark }
+
+* { box-sizing: border-box; }
+html { font-size: 20px; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 1rem; line-height: 1.5; margin: 0; }
+.proto { background: var(--proto-bg); color: var(--proto-fg); padding: .5rem 16px; font-size: .75rem; display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; justify-content: center; }
+.proto strong { letter-spacing: .06em; text-transform: uppercase; }
+.proto select { font: inherit; font-size: .75rem; padding: .3rem; border-radius: 6px; max-width: 100%; }
+main { max-width: 30rem; margin: 0 auto; padding: 1.25rem 16px 3rem; display: flex; flex-direction: column; gap: 1.25rem; }
+h1, h2 { font-family: var(--font-display); line-height: 1.2; margin: 0; text-wrap: balance; }
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.3rem; }
+p { margin: 0; }
+.muted { color: var(--ink-soft); }
+.stack { display: flex; flex-direction: column; gap: .75rem; }
+.btn { display: flex; align-items: center; justify-content: center; gap: .6rem; min-height: var(--tap); width: 100%; padding: .6rem 1rem; border-radius: var(--radius); border: 3px solid var(--ink); background: var(--bg); color: var(--ink); font: 700 1.05rem/1.2 var(--font-body); cursor: pointer; text-align: center; text-decoration: none; }
+.btn-primary { background: var(--ribbon); border-color: var(--ribbon); color: var(--ribbon-ink); font-size: 1.15rem; }
+.btn-wa { background: var(--pine); border-color: var(--pine); color: var(--bg); }
+.btn-link { border: none; background: none; min-height: 3rem; text-decoration: underline; font-weight: 700; color: var(--ink); }
+.btn:focus-visible, input:focus-visible, textarea:focus-visible { outline: 4px solid var(--ribbon); outline-offset: 3px; }
+.btn svg { width: 1.4em; height: 1.4em; flex: none; }
+.back { align-self: flex-start; width: auto; min-height: 3rem; border-width: 2px; padding: .3rem .9rem; font-size: .95rem; }
+.card { background: var(--surface); border-radius: var(--radius); padding: 1rem; display: flex; flex-direction: column; gap: .6rem; }
+.facts { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
+.fact { display: flex; flex-direction: column; }
+.fact small { font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-soft); font-weight: 700; }
+.fact span { font-weight: 700; font-size: 1.1rem; font-variant-numeric: tabular-nums; }
+label { font-weight: 700; display: block; margin-bottom: .3rem; }
+.hint { font-size: .85rem; color: var(--ink-soft); }
+input, textarea { width: 100%; font: 1.05rem/1.4 var(--font-body); padding: .8rem; border: 2px solid var(--ink-soft); border-radius: 10px; background: var(--bg); color: var(--ink); min-height: var(--tap); }
+textarea { min-height: 9rem; resize: vertical; }
+.field-error { color: var(--ribbon); font-weight: 700; font-size: .9rem; margin-top: .3rem; }
+.people { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
+.people li { display: flex; align-items: center; gap: .5rem; background: var(--surface); border-radius: 10px; padding: .35rem .35rem .35rem .9rem; min-height: 3.5rem; }
+.people li span { flex: 1; font-weight: 700; min-width: 0; overflow-wrap: anywhere; }
+.people .btn { width: auto; min-height: 3rem; font-size: .9rem; border-width: 2px; padding: .3rem .8rem; }
+.add-row { display: flex; gap: .5rem; }
+.add-row .btn { width: auto; flex: none; }
+.names { display: flex; flex-direction: column; gap: .7rem; }
+.name-btn { justify-content: flex-start; font-size: 1.25rem; padding-left: 1.25rem; }
+.name-btn[aria-disabled="true"] { border-style: dashed; color: var(--ink-soft); border-color: var(--line); }
+.name-btn em { margin-left: auto; font-style: normal; font-size: .8rem; font-weight: 400; }
+.status { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.status li { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .75rem; padding: .7rem 0; border-bottom: 1px solid var(--line); }
+.status li > span:first-child { font-weight: 700; flex: 1; min-width: 6rem; }
+.pill { font-size: .8rem; font-weight: 700; padding: .2rem .6rem; border-radius: 999px; border: 2px solid currentColor; }
+.pill.seen { color: var(--pine); background: var(--pine-bg); border-color: transparent; }
+.pill.in { color: var(--amber); background: var(--amber-bg); border-color: transparent; }
+.pill.out { color: var(--ink-soft); }
+.status .btn { width: auto; min-height: 2.75rem; font-size: .8rem; border-width: 2px; padding: .2rem .7rem; }
+.progress { height: .8rem; background: var(--line); border-radius: 999px; overflow: hidden; }
+.progress div { height: 100%; background: var(--pine); }
+.reveal { text-align: center; border: 3px solid var(--ribbon); border-radius: 20px; padding: 1.5rem 1rem; display: flex; flex-direction: column; gap: .5rem; align-items: center; }
+.reveal .who { font-family: var(--font-display); font-size: 2.6rem; color: var(--ribbon); line-height: 1.1; overflow-wrap: anywhere; }
+.wish { background: var(--surface); border-radius: var(--radius); padding: 1rem; white-space: pre-wrap; }
+.notice { background: var(--amber-bg); color: var(--amber); border-radius: var(--radius); padding: 1rem; font-weight: 700; }
+.ok { background: var(--pine-bg); color: var(--pine); border-radius: var(--radius); padding: 1rem; font-weight: 700; }
+.hero-gift { width: 7rem; height: 7rem; align-self: center; }
+.steps { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .8rem; counter-reset: s; }
+.steps li { display: grid; grid-template-columns: 2.4rem 1fr; gap: .75rem; align-items: start; }
+.steps li::before { counter-increment: s; content: counter(s); font-family: var(--font-display); font-weight: 700; width: 2.4rem; height: 2.4rem; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: var(--bg); }
+.dialog-back { position: fixed; inset: 0; background: rgb(0 0 0 / .55); display: grid; place-items: end center; padding: 16px; z-index: 10; }
+.dialog { background: var(--bg); color: var(--ink); border-radius: 20px; padding: 1.5rem 1.25rem; width: 100%; max-width: 30rem; display: flex; flex-direction: column; gap: 1rem; margin-bottom: env(safe-area-inset-bottom, 0px); }
+.toast { position: fixed; left: 16px; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); max-width: 28rem; margin: 0 auto; background: var(--ink); color: var(--bg); padding: 1rem; border-radius: var(--radius); font-weight: 700; z-index: 20; }
+.wa-preview { background: #dcf8c6; color: #111; border-radius: 12px; padding: .8rem; font-size: .9rem; overflow-wrap: anywhere; }
+footer { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; font-size: .85rem; }
+footer button { background: none; border: none; color: var(--ink-soft); text-decoration: underline; font: inherit; min-height: 2.75rem; cursor: pointer; }
+.list-groups { display: flex; flex-direction: column; gap: .6rem; }
+.list-groups .btn { justify-content: space-between; }
+.tag { font-size: .75rem; font-weight: 700; padding: .15rem .55rem; border-radius: 999px; background: var(--surface); color: var(--ink); }
+@media (prefers-reduced-motion: no-preference) { .reveal { animation: pop .45s ease-out; } @keyframes pop { from { transform: scale(.92); opacity: .4 } to { transform: none; opacity: 1 } } }
+</style>
+
+<div class="proto" role="note">
+  <strong>Prototipo</strong>
+  <span>No es la aplicación real</span>
+  <label for="jump" style="margin:0;font-weight:400">Ir a pantalla:</label>
+  <select id="jump"></select>
+</div>
+<main id="app" aria-live="polite"></main>
+<div id="overlay"></div>
+
+<script>
+const GIFT = '<svg class="hero-gift" viewBox="0 0 120 120" aria-hidden="true"><rect x="14" y="48" width="92" height="62" rx="8" fill="var(--surface)" stroke="var(--ink)" stroke-width="5"/><rect x="8" y="34" width="104" height="22" rx="6" fill="var(--bg)" stroke="var(--ink)" stroke-width="5"/><rect x="52" y="34" width="16" height="76" fill="var(--ribbon)"/><path d="M60 34c-6-16-30-22-30-8 0 8 18 8 30 8zm0 0c6-16 30-22 30-8 0 8-18 8-30 8z" fill="var(--ribbon)" stroke="var(--ribbon)" stroke-width="3" stroke-linejoin="round"/></svg>';
+const WA = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>';
+
+const S = {
+  group: { name: 'Navidad Familia 2027', date: '24 de diciembre de 2027', budget: '20 €' },
+  people: [
+    { name: 'Carmen', state: 'seen', wish: '' },
+    { name: 'Abuelo Paco', state: 'out', wish: '' },
+    { name: 'Abuela Rosa', state: 'in', wish: 'Un libro de crucigramas con letra grande.\nUnas zapatillas de casa (talla 38).' },
+    { name: 'Lucía', state: 'seen', wish: 'Auriculares o algo de dibujo.' },
+    { name: 'Javier', state: 'out', wish: '' },
+  ],
+  drawn: false,
+  me: 'Abuelo Paco',
+  target: 'Abuela Rosa',
+  draft: ['Carmen', 'Abuelo Paco', 'Abuela Rosa', 'Lucía'],
+};
+
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const app = document.getElementById('app');
+const overlay = document.getElementById('overlay');
+let toastTimer;
+function toast(msg) { clearTimeout(toastTimer); overlay.querySelector('.toast')?.remove(); overlay.insertAdjacentHTML('beforeend', `<div class="toast" role="status">${msg}</div>`); toastTimer = setTimeout(() => overlay.querySelector('.toast')?.remove(), 4000); }
+function dialog(html) { overlay.innerHTML = `<div class="dialog-back"><div class="dialog" role="dialog" aria-modal="true">${html}</div></div>`; overlay.querySelector('.dialog .btn')?.focus(); }
+function closeDialog() { overlay.innerHTML = ''; }
+function footer() { return `<footer><button data-go="ayuda">¿Cómo funciona?</button><button data-go="privacidad">Privacidad</button></footer>`; }
+function facts() { return `<div class="facts"><div class="fact"><small>Entrega</small><span>${S.group.date}</span></div><div class="fact"><small>Presupuesto</small><span>${S.group.budget}</span></div></div>`; }
+
+const screens = {
+  portada: { label: 'Organizador · 1. Portada', render: () => `
+    ${GIFT}
+    <h1 style="text-align:center">Amigo Invisible</h1>
+    <p style="text-align:center" class="muted">Haz el sorteo y compártelo por WhatsApp. Sin registrarse.</p>
+    <button class="btn btn-primary" data-go="crear">Crear amigo invisible</button>
+    <section class="stack" aria-labelledby="mis"><h2 id="mis">Mis amigos invisibles</h2>
+      <div class="list-groups"><button class="btn" data-go="organizar">${esc(S.group.name)} <span class="tag">Organizas</span></button>
+      <button class="btn" data-go="mi">Cena de amigos <span class="tag">Participas</span></button></div></section>
+    ${footer()}` },
+
+  crear: { label: 'Organizador · 2. Crear grupo', render: () => `
+    <button class="btn back" data-go="portada">‹ Volver</button>
+    <h1>Nuevo amigo invisible</h1>
+    <form id="f-create" class="stack" novalidate>
+      <div><label for="g-name">Nombre del grupo</label><input id="g-name" value="${esc(S.group.name)}" maxlength="60" autocomplete="off"></div>
+      <div><label for="g-date">Fecha de entrega <span class="hint">(si quieres)</span></label><input id="g-date" type="date" value="2027-12-24"></div>
+      <div><label for="g-budget">Presupuesto <span class="hint">(si quieres)</span></label><input id="g-budget" value="${esc(S.group.budget)}" maxlength="30" placeholder="Por ejemplo: 20 €"></div>
+      <div class="stack"><h2>¿Quién participa?</h2>
+        <p class="hint">Escribe un nombre y pulsa «Añadir». Mínimo 3 personas. No olvides ponerte a ti.</p>
+        <ul class="people">${S.draft.map((n, i) => `<li><span>${esc(n)}</span><button type="button" class="btn" data-del="${i}" aria-label="Quitar a ${esc(n)}">Quitar</button></li>`).join('')}</ul>
+        <div class="add-row"><input id="p-new" maxlength="30" placeholder="Nombre" aria-label="Nombre de la persona" autocomplete="off"><button type="button" class="btn" id="p-add">Añadir</button></div>
+        <div id="p-err" class="field-error" role="alert"></div>
+      </div>
+      <button class="btn btn-primary" type="submit">Crear</button>
+    </form>`,
+    bind: () => {
+      const add = () => { const i = document.getElementById('p-new'); const v = i.value.trim(); const err = document.getElementById('p-err');
+        const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+        if (!v) { err.textContent = 'Escribe un nombre.'; return; }
+        if (S.draft.some(n => norm(n) === norm(v))) { err.textContent = `Ya hay alguien llamado ${v}. Añade una inicial, por ejemplo «${v} G.»`; return; }
+        if (S.draft.length >= 40) { err.textContent = 'Máximo 40 personas.'; return; }
+        S.draft.push(v); go('crear'); setTimeout(() => document.getElementById('p-new').focus()); };
+      document.getElementById('p-add').onclick = add;
+      document.getElementById('p-new').onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); add(); } };
+      app.querySelectorAll('[data-del]').forEach(b => b.onclick = () => { S.draft.splice(+b.dataset.del, 1); go('crear'); });
+      document.getElementById('f-create').onsubmit = e => { e.preventDefault();
+        if (S.draft.length < 3) { document.getElementById('p-err').textContent = 'Hacen falta al menos 3 personas.'; return; }
+        S.group.name = document.getElementById('g-name').value.trim() || S.group.name; S.drawn = false; go('organizar'); toast('¡Creado! Ahora haz el sorteo.'); };
+    } },
+
+  organizar: { label: 'Organizador · 3. Panel del organizador', render: () => {
+    const seen = S.people.filter(p => p.state === 'seen').length;
+    return `
+    <button class="btn back" data-go="portada">‹ Inicio</button>
+    <div><p class="muted">Organizas</p><h1>${esc(S.group.name)}</h1></div>
+    ${facts()}
+    ${S.drawn ? `<div class="ok">✓ Sorteo hecho. Nadie, ni siquiera tú, puede ver los resultados de los demás.</div>` : `
+      <section class="card"><h2>Paso 1 · Haz el sorteo</h2><p>Cuando estén todos los nombres, pulsa el botón. Puedes enviar el enlace antes o después.</p>
+      <button class="btn btn-primary" data-act="sortear">Hacer el sorteo</button></section>`}
+    <section class="card"><h2>${S.drawn ? '' : 'Paso 2 · '}Envía el enlace al grupo</h2><p>Un solo enlace para todos. Cada persona elige su nombre.</p>
+      <button class="btn btn-wa" data-act="wa">${WA} Enviar por WhatsApp</button>
+      <button class="btn" data-act="copy">Copiar enlace</button></section>
+    <section class="stack" aria-labelledby="seg"><h2 id="seg">¿Quién lo ha visto ya?</h2>
+      ${S.drawn ? `<p><strong>${seen} de ${S.people.length}</strong> ya saben a quién regalan.</p><div class="progress" aria-hidden="true"><div style="width:${seen / S.people.length * 100}%"></div></div>` : ''}
+      <ul class="status">${S.people.map((p, i) => `<li><span>${esc(p.name)}</span>
+        <span class="pill ${p.state}">${p.state === 'seen' ? '✓ Ha visto a su amigo' : p.state === 'in' ? 'Ha entrado' : 'Sin entrar'}</span>
+        ${p.state !== 'out' ? `<button class="btn" data-free="${i}">Dejar entrar de nuevo</button>` : ''}</li>`).join('')}</ul>
+      <button class="btn btn-wa" data-act="remind">${WA} Recordar por WhatsApp</button></section>
+    <section class="card"><h2>Guarda tu enlace de organizador</h2><p>Este móvil lo recuerda. Si cambias de móvil, lo necesitarás para volver aquí. Es secreto: no lo compartas.</p>
+      <button class="btn" data-act="savelink">${WA} Enviármelo por WhatsApp</button></section>
+    <details class="card"><summary style="font-weight:700;min-height:2.75rem;cursor:pointer">Más opciones</summary>
+      <div class="stack" style="margin-top:.6rem">
+      ${S.drawn ? '<button class="btn" data-act="redraw">Repetir el sorteo</button><button class="btn" data-act="undo">Deshacer el sorteo para cambiar personas</button>' : '<button class="btn" data-go="crear">Cambiar nombres o datos</button>'}
+      <button class="btn" data-act="delete">Borrar este amigo invisible</button>
+      <p class="hint">Se borrará automáticamente el 23 de enero de 2028.</p></div></details>`; },
+    bind: () => {
+      const msg = `🎁 ¡Amigo invisible «${esc(S.group.name)}»! Toca este enlace, elige tu nombre y descubre a quién le haces el regalo: https://amigo-invisible.example/g/X7k2mQ9pLr4tWz8aB1cD3e`;
+      on('sortear', () => dialog(`<h2>¿Hacer el sorteo ahora?</h2><p>Se repartirá a ${S.people.length} personas. Tú tampoco verás quién le toca a cada uno.</p>
+        <button class="btn btn-primary" data-dlg="yes">Sí, hacer el sorteo</button><button class="btn" data-dlg="no">No, todavía no</button>`, () => { S.drawn = true; go('organizar'); toast('¡Sorteo hecho!'); }));
+      on('wa', () => dialog(`<h2>Así se abriría WhatsApp</h2><p class="hint">Eliges el grupo de la familia y pulsas enviar.</p><div class="wa-preview">${msg}</div><button class="btn" data-dlg="no">Entendido</button>`));
+      on('remind', () => dialog(`<h2>Así se abriría WhatsApp</h2><div class="wa-preview">🎁 Recordatorio del amigo invisible «${esc(S.group.name)}»: si todavía no has mirado a quién regalas, toca aquí: https://amigo-invisible.example/g/X7k2…</div><button class="btn" data-dlg="no">Entendido</button>`));
+      on('copy', () => toast('Enlace copiado'));
+      on('savelink', () => toast('Se abriría WhatsApp para que te lo envíes a ti mismo'));
+      on('redraw', () => dialog(`<h2>¿Repetir el sorteo?</h2><p class="notice">2 personas ya han visto a quién regalan. Si repites el sorteo, tendrán que volver a mirarlo.</p>
+        <button class="btn btn-primary" data-dlg="yes">Sí, repetir</button><button class="btn" data-dlg="no">No, dejarlo como está</button>`, () => { S.people.forEach(p => { if (p.state === 'seen') p.state = 'in'; }); go('organizar'); toast('Sorteo repetido'); }));
+      on('undo', () => dialog(`<h2>¿Deshacer el sorteo?</h2><p>Podrás cambiar los nombres y luego sortear otra vez.</p><button class="btn btn-primary" data-dlg="yes">Sí, deshacer</button><button class="btn" data-dlg="no">No</button>`, () => { S.drawn = false; go('organizar'); }));
+      on('delete', () => dialog(`<h2>¿Borrar «${esc(S.group.name)}»?</h2><p>Se borrará todo y el enlace dejará de funcionar. No se puede recuperar.</p><button class="btn btn-primary" data-dlg="yes">Sí, borrar</button><button class="btn" data-dlg="no">No, conservarlo</button>`, () => go('error')));
+      app.querySelectorAll('[data-free]').forEach(b => b.onclick = () => { const p = S.people[+b.dataset.free];
+        dialog(`<h2>¿Dejar entrar de nuevo a ${esc(p.name)}?</h2><p>Úsalo si ha cambiado de móvil o si otra persona eligió su nombre por error. Su amigo invisible no cambia.</p><button class="btn btn-primary" data-dlg="yes">Sí, dejar entrar</button><button class="btn" data-dlg="no">No</button>`, () => { p.state = 'out'; go('organizar'); toast(`${p.name} puede volver a elegir su nombre`); }); });
+    } },
+
+  quien: { label: 'Participante · 4. ¿Quién eres?', render: () => `
+    <div><p class="muted">Amigo invisible</p><h1>${esc(S.group.name)}</h1></div>
+    ${facts()}
+    <h2>¿Quién eres tú? Toca tu nombre</h2>
+    <div class="names">${S.people.map(p => p.state === 'out'
+      ? `<button class="btn name-btn" data-me="${esc(p.name)}">${esc(p.name)}</button>`
+      : `<button class="btn name-btn" aria-disabled="true" data-taken="${esc(p.name)}">${esc(p.name)} <em>Ya ha entrado</em></button>`).join('')}</div>
+    ${footer()}`,
+    bind: () => {
+      app.querySelectorAll('[data-me]').forEach(b => b.onclick = () => { const n = b.dataset.me;
+        dialog(`<h2>¿Eres ${esc(n)}?</h2><button class="btn btn-primary" data-dlg="yes">Sí, soy ${esc(n)}</button><button class="btn" data-dlg="no">No</button>`, () => { S.me = n; S.people.find(p => p.name === n).state = 'in'; go('mi'); }); });
+      app.querySelectorAll('[data-taken]').forEach(b => b.onclick = () => dialog(`<h2>${esc(b.dataset.taken)} ya ha entrado</h2><p>Si eres tú y has cambiado de móvil, pide a quien organiza que te deje entrar de nuevo.</p><button class="btn" data-dlg="no">Entendido</button>`));
+    } },
+
+  mi: { label: 'Participante · 5. Mi pantalla', render: () => `
+    <div><p class="muted">${esc(S.group.name)}</p><h1>Hola, ${esc(S.me)}</h1></div>
+    ${facts()}
+    ${S.drawn ? `<button class="btn btn-primary" data-go="revelar">🎁 Ver a quién regalo</button>`
+      : `<div class="notice">Todavía no se ha hecho el sorteo. Vuelve a abrir este enlace más adelante.</div>`}
+    <section class="card"><h2>Mis ideas de regalo</h2><p>Escribe qué te gustaría, para que quien te regale acierte.</p>
+      <button class="btn" data-go="deseos">Escribir mis ideas</button></section>
+    <button class="btn btn-link" data-act="notme">¿No eres ${esc(S.me)}? Toca aquí</button>
+    ${footer()}`,
+    bind: () => on('notme', () => dialog(`<h2>¿No eres ${esc(S.me)}?</h2><p>Volverás a la lista para elegir tu nombre.</p><button class="btn btn-primary" data-dlg="yes">Elegir otro nombre</button><button class="btn" data-dlg="no">Sí soy ${esc(S.me)}</button>`, () => { S.people.find(p => p.name === S.me).state = 'out'; go('quien'); })) },
+
+  revelar: { label: 'Participante · 6. Ver a quién regalo', render: () => { const t = S.people.find(p => p.name === S.target); S.drawn = true; return `
+    <button class="btn back" data-go="mi">‹ Volver</button>
+    <div class="reveal"><p style="font-size:1.1rem">Te ha tocado regalar a</p><p class="who">${esc(t.name)}</p></div>
+    ${facts()}
+    <section class="stack"><h2>Ideas de ${esc(t.name)}</h2>
+      ${t.wish ? `<div class="wish">${esc(t.wish)}</div>` : `<p class="muted">Todavía no ha escrito ideas. Vuelve a mirar más adelante.</p>`}</section>
+    <p class="muted">Es un secreto: no se lo digas a nadie 🤫</p>`; } },
+
+  deseos: { label: 'Participante · 7. Mis ideas de regalo', render: () => { const me = S.people.find(p => p.name === S.me); return `
+    <button class="btn back" data-go="mi">‹ Volver</button>
+    <h1>Mis ideas de regalo</h1>
+    <form id="f-wish" class="stack"><div><label for="wish">¿Qué te gustaría?</label>
+      <textarea id="wish" maxlength="500" placeholder="Por ejemplo: un libro de cocina, una bufanda azul…">${esc(me.wish)}</textarea>
+      <p class="hint" id="count">${me.wish.length} de 500 letras</p></div>
+      <button class="btn btn-primary" type="submit">Guardar</button></form>`; },
+    bind: () => { const t = document.getElementById('wish'); t.oninput = () => document.getElementById('count').textContent = `${t.value.length} de 500 letras`;
+      document.getElementById('f-wish').onsubmit = e => { e.preventDefault(); S.people.find(p => p.name === S.me).wish = t.value; go('mi'); toast('Guardado'); }; } },
+
+  ayuda: { label: 'Común · 8. ¿Cómo funciona?', render: () => `
+    <button class="btn back" data-go="portada">‹ Volver</button>
+    <h1>¿Cómo funciona?</h1>
+    <ol class="steps"><li><div><strong>Quien organiza</strong> escribe los nombres y pulsa «Hacer el sorteo».</div></li>
+      <li><div>Manda <strong>un enlace</strong> al grupo de WhatsApp.</div></li>
+      <li><div>Cada persona <strong>toca el enlace</strong>, toca su nombre y ve a quién le hace el regalo.</div></li></ol>
+    <div class="card"><p>No hace falta registrarse ni descargar nada. Nadie puede ver a quién le ha tocado a los demás.</p></div>` },
+
+  privacidad: { label: 'Común · 9. Privacidad', render: () => `
+    <button class="btn back" data-go="portada">‹ Volver</button>
+    <h1>Tus datos</h1>
+    <div class="stack"><p><strong>Qué guardamos:</strong> el nombre del grupo, los nombres que escribe quien organiza y las ideas de regalo.</p>
+    <p><strong>Qué no guardamos:</strong> ni teléfonos, ni correos, ni contraseñas.</p>
+    <p><strong>Quién lo ve:</strong> cada persona solo ve a quién regala y sus ideas de regalo.</p>
+    <p><strong>Cuánto tiempo:</strong> todo se borra solo un mes después de la fecha de entrega.</p></div>` },
+
+  error: { label: 'Común · 10. Enlace no válido', render: () => `
+    ${GIFT}
+    <h1>No encontramos este amigo invisible</h1>
+    <p>Puede que el enlace esté incompleto o que el grupo se haya borrado. Pide a quien organiza que te lo vuelva a enviar.</p>
+    <button class="btn btn-primary" data-go="portada">Ir al inicio</button>` },
+};
+
+let pendingYes = null;
+function on(act, fn) { app.querySelectorAll(`[data-act="${act}"]`).forEach(b => b.onclick = fn); }
+const _dialog = dialog;
+dialog = (html, yes) => { pendingYes = yes || null; _dialog(html); };
+overlay.addEventListener('click', e => { const d = e.target.closest('[data-dlg]'); if (!d) return; const y = pendingYes; closeDialog(); if (d.dataset.dlg === 'yes' && y) y(); });
+
+function go(id) { const s = screens[id]; app.innerHTML = s.render(); s.bind?.(); jump.value = id; app.querySelectorAll('[data-go]').forEach(b => b.onclick = () => { go(b.dataset.go); window.scrollTo(0, 0); }); app.querySelectorAll('footer [data-go]').forEach(b => b.onclick = () => { go(b.dataset.go); window.scrollTo(0, 0); }); const h = app.querySelector('h1'); if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); } }
+const jump = document.getElementById('jump');
+jump.innerHTML = Object.entries(screens).map(([k, v]) => `<option value="${k}">${v.label}</option>`).join('');
+jump.onchange = () => { closeDialog(); go(jump.value); window.scrollTo(0, 0); };
+go('portada');
+</script>
