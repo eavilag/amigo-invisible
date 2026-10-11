@@ -1,6 +1,6 @@
 | ID | Versión | Estado | Fecha |
 |---|---|---|---|
-| SPEC | 0.1.0 | En revisión (Puerta P1) | 2026-10-11 |
+| SPEC | 0.1.1 | En revisión (Puerta P1) | 2026-10-11 |
 
 # Especificación de requisitos · Amigo Invisible
 
@@ -257,7 +257,7 @@ Diseñar de forma que no se impida más adelante: exclusiones entre participante
 ## 11. Preguntas abiertas
 | # | Pregunta | Quién | ¿Bloquea? |
 |---|---|---|---|
-| PA-1 | Dirección web definitiva: ¿vale un subdominio gratuito (`amigo-invisible.<cuenta>.workers.dev`) o quieres un dominio propio (≈10 €/año)? | Propietario | No (antes de P3) |
+| PA-1 | ~~Dirección web definitiva~~ **Resuelta (2026-10-11):** subdominio gratuito `*.workers.dev`; un dominio propio puede añadirse más adelante sin cambios de código | Propietario | — |
 
 ## 12. Plan de fases
 1. Especificación (esta) → **Puerta P1**
@@ -271,3 +271,4 @@ Diseñar de forma que no se impida más adelante: exclusiones entre participante
 | Versión | Fecha | Cambio |
 |---|---|---|
 | 0.1.0 | 2026-10-11 | Primer borrador para revisión (decisiones previas: enlace de grupo, lista de deseos, seguimiento, Cloudflare, repo público) |
+| 0.1.1 | 2026-10-11 | PA-1 resuelta: subdominio gratuito workers.dev |
