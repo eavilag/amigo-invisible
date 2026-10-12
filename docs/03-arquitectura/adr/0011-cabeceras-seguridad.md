@@ -20,6 +20,8 @@ Cloudflare permite un fichero `_headers` para estáticos, pero según su documen
 | `X-Robots-Tag` | `noindex, nofollow` | No indexar grupos (RNF-09) |
 | `Cache-Control` (API) | `no-store` | No cachear datos personales |
 
+`Strict-Transport-Security` y la directiva `upgrade-insecure-requests` se envían **solo cuando la petición llega por HTTPS** (siempre en producción). En `http://localhost` WebKit las aplicaba y reescribía los recursos a `https://localhost`, rompiendo el desarrollo y las pruebas.
+
 ## Compromisos
 - Cada petición de estáticos consume una invocación del Worker (100k/día gratis): irrelevante para el volumen esperado.
 - CSP sin `'unsafe-inline'`: Vite genera CSS y JS como ficheros externos, y `index.html` no lleva estilos ni scripts en línea. La prop `style` de React se aplica mediante CSSOM (`element.style`), que `style-src` no bloquea; se usa solo para valores dinámicos (p. ej. el ancho de la barra de progreso).

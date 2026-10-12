@@ -7,7 +7,7 @@ API REST pequeña sobre Workers con validación estricta de entrada y un contrat
 
 ## Decisión
 - **Hono** como enrutador HTTP (nativo de Workers, sin dependencias, ~14 KB).
-- **zod** para validar toda entrada; los esquemas viven en `src/shared/schemas.ts` y los usan cliente y servidor (misma regla, mismo mensaje).
+- **zod** para validar toda entrada en el servidor; los esquemas viven en `src/shared/schemas.ts`. El cliente reutiliza las mismas reglas (`shared/limits.ts`, `shared/normalize.ts`, `shared/dates.ts`, `shared/patterns.ts`) sin cargar zod, lo que reduce el JavaScript del móvil de 106 KB a 83 KB comprimido (RNF-06).
 - SQL escrito a mano, siempre con parámetros enlazados (`prepare().bind()`), concentrado en `db/repo.ts`. Sin ORM.
 
 ## Opciones consideradas
