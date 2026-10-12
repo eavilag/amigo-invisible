@@ -30,9 +30,9 @@ Las asignaciones se guardan sin cifrar a nivel de aplicación: el operador de la
 
 | Secreto | Ubicación | Alcance | Acceso | Protección y recomendaciones |
 |---|---|---|---|---|
-| Cuenta de Cloudflare | Propietario | Total | Propietario | Activar 2FA |
-| Cuenta de GitHub y token de `gh` | Propietario; llavero de macOS | Código, y por tanto producción (CD desde `main`) | Propietario | 2FA; sin colaboradores con escritura; recomendable proteger la rama `main` |
-| Sesión OAuth de `wrangler` | `~/Library/Preferences/.wrangler/config/default.toml` del Mac del propietario | Amplio sobre la cuenta de Cloudflare | Usuario del Mac | Cerrar con `npx wrangler logout` (CI ya despliega) |
+| Cuenta de Cloudflare (acceso con Google) | Propietario | Total | Quien controle la cuenta de Google del propietario | La seguridad depende de la cuenta de Google: verificación en dos pasos o llave de acceso en Google. No se crea contraseña en Cloudflare, para no abrir una segunda vía de acceso |
+| Cuenta de GitHub y token de `gh` | Propietario; llavero de macOS | Código, y por tanto producción (CD desde `main`) | Propietario | ✅ 2FA activada (2026-10-12); sin colaboradores con escritura; recomendable proteger la rama `main` |
+| Sesión OAuth de `wrangler` | — | — | — | ✅ Cerrada con `npx wrangler logout` (2026-10-12); solo despliega CI |
 | `CLOUDFLARE_API_TOKEN` | Secretos cifrados de GitHub Actions | Workers y D1 de la cuenta | Solo el trabajo de despliegue en `push` a `main` (no en PRs); enmascarado en los registros | Plantilla *Edit Cloudflare Workers* + *D1 Edit*; revocar y rotar desde el panel |
 | `CLOUDFLARE_ACCOUNT_ID` | Secretos de GitHub | Ninguno por sí solo | — | Guardado como secreto por higiene |
 | `database_id` de D1 | `wrangler.jsonc` (público) | Ninguno sin credenciales | Público | No es secreto |
