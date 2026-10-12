@@ -1,6 +1,6 @@
 | ID | Versión | Estado | Fecha |
 |---|---|---|---|
-| GUIA | 0.3.0 | Pendiente de validar con usuarios mayores (Puerta P2) | 2026-10-12 |
+| GUIA | 0.3.1 | Pendiente de validar con usuarios mayores (Puerta P2) | 2026-10-12 |
 
 # Guía de uso · Amigo Invisible
 
@@ -47,6 +47,8 @@ Aparecerá un nombre en grande, en rojo. **¡Esa es la persona a la que le haces
 
 ### 6. (Si quieres) Escribe qué te gustaría que te regalen
 Toca **"Escribir mis ideas"**, escribe (o dicta con el micrófono del teclado) y toca **"Guardar"**. Lo puedes cambiar cuando quieras, antes o después del sorteo.
+
+> **¿Quieres poner un regalo de una tienda en Internet?** Puedes pegar su dirección. En Amazon, usa el botón **"Compartir"** del producto y elige **"Copiar enlace"**: sale una dirección corta que cabe de sobra. Quien te regale verá la dirección como texto: tendrá que mantener el dedo sobre ella para copiarla y pegarla en el navegador.
 
 <img src="img/07-mis-ideas.png" alt="Pantalla para escribir ideas de regalo" width="260">
 
@@ -118,3 +120,4 @@ En *Más opciones* → **"Borrar este amigo invisible"**. Se borran todos los no
 | 0.1.0 | 2026-10-11 | Primera versión, basada en el prototipo |
 | 0.2.0 | 2026-10-12 | Flujo flexible (enviar antes de sortear y corregir); borrado solo manual |
 | 0.3.0 | 2026-10-12 | Dirección real, capturas de la aplicación publicada, problemas frecuentes ampliados |
+| 0.3.1 | 2026-10-12 | Consejo para pegar direcciones de tiendas en las ideas de regalo |

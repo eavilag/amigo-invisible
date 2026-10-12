@@ -1,6 +1,6 @@
 | ID | Versión | Estado | Fecha |
 |---|---|---|---|
-| SPEC | 1.0.0 | Aprobado (Puerta P1, 2026-10-12) | 2026-10-12 |
+| SPEC | 1.0.1 | Aprobado (Puerta P1, 2026-10-12) | 2026-10-12 |
 
 # Especificación de requisitos · Amigo Invisible
 
@@ -259,7 +259,7 @@ Ante cualquier fallo se muestra un mensaje en lenguaje llano con una única sali
 | RNF-14 | Navegación sencilla | El participante tiene todo en una pantalla personal: ver a quién regala y escribir sus ideas están a 1 toque. El organizador tiene todo en un único panel. Nunca más de 2 niveles de profundidad y siempre un botón "Volver" visible | Prueba E2E de recorridos |
 
 ## 10. Consideraciones futuras (P2)
-Diseñar de forma que no se impida más adelante: exclusiones entre participantes, varios idiomas, PIN opcional, mostrar el resultado tras una fecha concreta, borrado por caducidad (descartado en v0.2.0, podría hacerse sin procesos recurrentes borrando al abrir un grupo caducado).
+Diseñar de forma que no se impida más adelante: exclusiones entre participantes, varios idiomas, PIN opcional, mostrar el resultado tras una fecha concreta, borrado por caducidad (descartado en v0.2.0, podría hacerse sin procesos recurrentes borrando al abrir un grupo caducado), direcciones web tocables en las ideas de regalo (descartado en v1.0.1 por el propietario: las direcciones se muestran como texto).
 
 ## 11. Preguntas abiertas
 | # | Pregunta | Quién | ¿Bloquea? |
@@ -281,3 +281,4 @@ Diseñar de forma que no se impida más adelante: exclusiones entre participante
 | 0.1.1 | 2026-10-11 | PA-1 resuelta: subdominio gratuito workers.dev |
 | 0.2.0 | 2026-10-12 | Revisión del propietario: se explicita el flujo flexible (§6, CA-03.4, CA-04.4, CA-04.5, CA-10.4, CA-11.3); nuevo RNF-14 de navegación; se eliminan RF-17 (borrado automático) y RF-19 (ayuda y privacidad); se añade CA-01.8 |
 | 1.0.0 | 2026-10-12 | **Aprobada por el propietario (Puerta P1).** Línea base de requisitos |
+| 1.0.1 | 2026-10-12 | §10: se registra como futuro, descartado por ahora, convertir en enlaces las direcciones web de las ideas de regalo. Sin cambio de alcance |

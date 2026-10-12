@@ -1,12 +1,12 @@
 | ID | Versión | Estado | Fecha |
 |---|---|---|---|
-| TRAZ | generada | Completa | 2026-10-12 15:35 UTC |
+| TRAZ | generada | Completa | 2026-10-12 17:53 UTC |
 
 # Matriz de trazabilidad
 
 > Documento **generado automáticamente** por `npm run traceability` (scripts/traceability.mjs). No editar a mano.
 
-- Especificación: `SPEC` 1.0.0
+- Especificación: `SPEC` 1.0.1
 - Informes: `reports/vitest.json` (local), `reports/playwright.json` (local), `reports/playwright-prod.json` (producción)
 - Ejecuciones de prueba: ✅ 113 superadas · ❌ 0 fallidas · ⏭️ 2 omitidas
 - Criterios sin evidencia: **0**
