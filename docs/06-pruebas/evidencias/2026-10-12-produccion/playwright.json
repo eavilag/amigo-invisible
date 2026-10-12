@@ -1,0 +1,1857 @@
+{
+  "config": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/Users/eavila/Documents/Claude/Projects/AmigoInvisible2027/node_modules/.bin/playwright",
+      "test"
+    ],
+    "configFile": "/Users/eavila/Documents/Claude/Projects/AmigoInvisible2027/playwright.config.ts",
+    "rootDir": "/Users/eavila/Documents/Claude/Projects/AmigoInvisible2027/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 3
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/eavila/Documents/Claude/Projects/AmigoInvisible2027/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "android-chrome",
+        "name": "android-chrome",
+        "testDir": "/Users/eavila/Documents/Claude/Projects/AmigoInvisible2027/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/eavila/Documents/Claude/Projects/AmigoInvisible2027/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "iphone-safari",
+        "name": "iphone-safari",
+        "testDir": "/Users/eavila/Documents/Claude/Projects/AmigoInvisible2027/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/eavila/Documents/Claude/Projects/AmigoInvisible2027/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "name": "android-chrome",
+        "testDir": "/Users/eavila/Documents/Claude/Projects/AmigoInvisible2027/tests/e2e",
+        "snapshotDir": "/Users/eavila/Documents/Claude/Projects/AmigoInvisible2027/tests/e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 60000,
+        "use": {
+          "baseURL": "http://localhost:4173",
+          "locale": "es-ES",
+          "timezoneId": "Europe/Madrid",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Mobile Safari/537.36",
+          "viewport": {
+            "width": 412,
+            "height": 839
+          },
+          "screen": {
+            "width": 412,
+            "height": 915
+          },
+          "deviceScaleFactor": 2.625,
+          "isMobile": true,
+          "hasTouch": true,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "android-chrome"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/eavila/Documents/Claude/Projects/AmigoInvisible2027/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "name": "iphone-safari",
+        "testDir": "/Users/eavila/Documents/Claude/Projects/AmigoInvisible2027/tests/e2e",
+        "snapshotDir": "/Users/eavila/Documents/Claude/Projects/AmigoInvisible2027/tests/e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 60000,
+        "use": {
+          "baseURL": "http://localhost:4173",
+          "locale": "es-ES",
+          "timezoneId": "Europe/Madrid",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1",
+          "viewport": {
+            "width": 390,
+            "height": 664
+          },
+          "screen": {
+            "width": 390,
+            "height": 844
+          },
+          "deviceScaleFactor": 3,
+          "isMobile": true,
+          "hasTouch": true,
+          "defaultBrowserType": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "iphone-safari"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "reports/playwright.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never",
+          "outputFolder": "playwright-report"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 3,
+    "webServer": {
+      "command": "npm run preview:local",
+      "url": "http://localhost:4173/api/health",
+      "reuseExistingServer": true,
+      "timeout": 180000
+    }
+  },
+  "suites": [
+    {
+      "title": "accessibility.spec.ts",
+      "file": "accessibility.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Accesibilidad y diseño adaptable",
+          "file": "accessibility.spec.ts",
+          "line": 32,
+          "column": 6,
+          "specs": [
+            {
+              "title": "CP-A-01 [RNF-01][RNF-02][RNF-04] todas las pantallas cumplen WCAG 2.2 AA, botones ≥ 56 px y sin desplazamiento horizontal, en claro y oscuro",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 29787,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:33:37.016Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ddd864604af8a6a0198f-93b0437439c55db6c3b8",
+              "file": "accessibility.spec.ts",
+              "line": 33,
+              "column": 3
+            },
+            {
+              "title": "CP-A-02 [RNF-02][RNF-04] a 320 px y con el texto al 200 % no hay desplazamiento horizontal; letra base ≥ 20 px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4453,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:33:37.019Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ddd864604af8a6a0198f-384aac626b8e47f2b612",
+              "file": "accessibility.spec.ts",
+              "line": 100,
+              "column": 3
+            },
+            {
+              "title": "CP-A-03 [RNF-01] el diálogo atrapa el foco y Escape lo cierra devolviendo el foco",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2165,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:33:37.024Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ddd864604af8a6a0198f-ee92ada9e542b735f574",
+              "file": "accessibility.spec.ts",
+              "line": 127,
+              "column": 3
+            },
+            {
+              "title": "CP-A-01 [RNF-01][RNF-02][RNF-04] todas las pantallas cumplen WCAG 2.2 AA, botones ≥ 56 px y sin desplazamiento horizontal, en claro y oscuro",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 45862,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:11.126Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ddd864604af8a6a0198f-13096623ba97692ae467",
+              "file": "accessibility.spec.ts",
+              "line": 33,
+              "column": 3
+            },
+            {
+              "title": "CP-A-02 [RNF-02][RNF-04] a 320 px y con el texto al 200 % no hay desplazamiento horizontal; letra base ≥ 20 px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 6883,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:11.344Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ddd864604af8a6a0198f-509030549d3672424890",
+              "file": "accessibility.spec.ts",
+              "line": 100,
+              "column": 3
+            },
+            {
+              "title": "CP-A-03 [RNF-01] el diálogo atrapa el foco y Escape lo cierra devolviendo el foco",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "WebKit móvil no navega con Tab por defecto",
+                      "location": {
+                        "file": "/Users/eavila/Documents/Claude/Projects/AmigoInvisible2027/tests/e2e/accessibility.spec.ts",
+                        "line": 128,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 2,
+                      "status": "skipped",
+                      "duration": 1928,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:13.529Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "WebKit móvil no navega con Tab por defecto",
+                          "location": {
+                            "file": "/Users/eavila/Documents/Claude/Projects/AmigoInvisible2027/tests/e2e/accessibility.spec.ts",
+                            "line": 128,
+                            "column": 10
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ddd864604af8a6a0198f-2b09ac935b064a1a2bdc",
+              "file": "accessibility.spec.ts",
+              "line": 127,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "organizer.spec.ts",
+      "file": "organizer.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Organizador",
+          "file": "organizer.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "CP-E-01 [RF-01][RF-02][RF-03][CA-01.1][CA-01.8][CA-03.1][CA-03.2][CA-03.4] crea el grupo y puede compartir el enlace antes del sorteo",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2085,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:33:39.714Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-2ff174e73ad896257f13",
+              "file": "organizer.spec.ts",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "CP-E-02 [RF-04][CA-04.1][CA-04.5] antes del sorteo se cambian nombres desde el panel",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1985,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:33:41.821Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-d01b6ddb1fed3796b202",
+              "file": "organizer.spec.ts",
+              "line": 39,
+              "column": 3
+            },
+            {
+              "title": "CP-E-03 [RF-05][RF-12][CA-05.3][CA-12.1][CA-12.2] sortea sin ver resultados y sigue quién lo ha visto",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4064,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:33:42.015Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-70d28920a4c5885db405",
+              "file": "organizer.spec.ts",
+              "line": 51,
+              "column": 3
+            },
+            {
+              "title": "CP-E-04 [RF-06][CA-06.1][CA-06.3] repetir el sorteo avisa si alguien ya lo vio; cancelar no cambia nada",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4346,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:33:43.837Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-7d418d906db3aeb6ca2c",
+              "file": "organizer.spec.ts",
+              "line": 81,
+              "column": 3
+            },
+            {
+              "title": "CP-E-05 [RF-06][CA-06.2][CA-05.4] deshacer el sorteo vuelve a permitir cambiar personas",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2485,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:33:46.110Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-7506f0c2a0daf8415980",
+              "file": "organizer.spec.ts",
+              "line": 107,
+              "column": 3
+            },
+            {
+              "title": "CP-E-06 [RF-14][CA-14.1][CA-14.2][CA-08.2] dejar entrar de nuevo libera el nombre en el móvil anterior",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 3953,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:33:48.210Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-888494033d0605f2e7a2",
+              "file": "organizer.spec.ts",
+              "line": 120,
+              "column": 3
+            },
+            {
+              "title": "CP-E-07 [RF-16][CA-16.1][CA-18.2] borrar el grupo hace que el enlace deje de funcionar",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3888,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:33:48.660Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-26d296ad2eed1caafac2",
+              "file": "organizer.spec.ts",
+              "line": 138,
+              "column": 3
+            },
+            {
+              "title": "CP-E-08 [RF-02][CA-02.1][CA-02.2][CA-02.3][RF-18][CA-18.1] el panel se recupera desde otro móvil con el enlace de organizador",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4435,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:33:52.191Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-555d861a07d39343a94c",
+              "file": "organizer.spec.ts",
+              "line": 155,
+              "column": 3
+            },
+            {
+              "title": "CP-E-09 [RF-01][CA-01.2][CA-01.3][CA-01.5][CA-01.6] el formulario explica los errores junto al campo",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1801,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:33:52.586Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-e01f91afa4790b571f62",
+              "file": "organizer.spec.ts",
+              "line": 183,
+              "column": 3
+            },
+            {
+              "title": "CP-E-20 [RF-01][CA-01.4] con 40 personas el botón «Añadir» deja de permitir más",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3484,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:33:54.407Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-af6e4d74a3ee1baa743b",
+              "file": "organizer.spec.ts",
+              "line": 209,
+              "column": 3
+            },
+            {
+              "title": "CP-E-01 [RF-01][RF-02][RF-03][CA-01.1][CA-01.8][CA-03.1][CA-03.2][CA-03.4] crea el grupo y puede compartir el enlace antes del sorteo",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 3303,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:16.292Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-5fe0e43bf0612efe3a37",
+              "file": "organizer.spec.ts",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "CP-E-02 [RF-04][CA-04.1][CA-04.5] antes del sorteo se cambian nombres desde el panel",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3559,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:18.980Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-df12fa35d9dab585a299",
+              "file": "organizer.spec.ts",
+              "line": 39,
+              "column": 3
+            },
+            {
+              "title": "CP-E-03 [RF-05][RF-12][CA-05.3][CA-12.1][CA-12.2] sortea sin ver resultados y sigue quién lo ha visto",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 6637,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:19.621Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-d2c5214011dd4c4a6692",
+              "file": "organizer.spec.ts",
+              "line": 51,
+              "column": 3
+            },
+            {
+              "title": "CP-E-04 [RF-06][CA-06.1][CA-06.3] repetir el sorteo avisa si alguien ya lo vio; cancelar no cambia nada",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 6688,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:22.566Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-0c078259d2939551ba29",
+              "file": "organizer.spec.ts",
+              "line": 81,
+              "column": 3
+            },
+            {
+              "title": "CP-E-05 [RF-06][CA-06.2][CA-05.4] deshacer el sorteo vuelve a permitir cambiar personas",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 3406,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:26.295Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-01a5f0cf00f58b42d77e",
+              "file": "organizer.spec.ts",
+              "line": 107,
+              "column": 3
+            },
+            {
+              "title": "CP-E-06 [RF-14][CA-14.1][CA-14.2][CA-08.2] dejar entrar de nuevo libera el nombre en el móvil anterior",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 6113,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:29.289Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-f441a550f5cbfafac13e",
+              "file": "organizer.spec.ts",
+              "line": 120,
+              "column": 3
+            },
+            {
+              "title": "CP-E-07 [RF-16][CA-16.1][CA-18.2] borrar el grupo hace que el enlace deje de funcionar",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 6053,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:29.736Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-27b3b9f0c3843d036cde",
+              "file": "organizer.spec.ts",
+              "line": 138,
+              "column": 3
+            },
+            {
+              "title": "CP-E-08 [RF-02][CA-02.1][CA-02.2][CA-02.3][RF-18][CA-18.1] el panel se recupera desde otro móvil con el enlace de organizador",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 6886,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:35.434Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-b496e4b022f091e5b6ad",
+              "file": "organizer.spec.ts",
+              "line": 155,
+              "column": 3
+            },
+            {
+              "title": "CP-E-09 [RF-01][CA-01.2][CA-01.3][CA-01.5][CA-01.6] el formulario explica los errores junto al campo",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2645,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:35.814Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-5f84c1d6739d2169b229",
+              "file": "organizer.spec.ts",
+              "line": 183,
+              "column": 3
+            },
+            {
+              "title": "CP-E-20 [RF-01][CA-01.4] con 40 personas el botón «Añadir» deja de permitir más",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4891,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:38.483Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a8200b4c5104877b8606-638705a001f3169737f0",
+              "file": "organizer.spec.ts",
+              "line": 209,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "participant.spec.ts",
+      "file": "participant.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Participante",
+          "file": "participant.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "CP-E-10 [RF-07][RF-08][RF-09][RF-11][RNF-03][RNF-14][CA-07.1][CA-08.1][CA-09.1] una persona mayor ve a quién regala en 3 toques y el móvil la recuerda",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 3895,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:33:56.666Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "969ead2f7b23ea9f6997-5e95e181a6eeb3066479",
+              "file": "participant.spec.ts",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "CP-E-11 [RF-07][CA-07.2][CA-07.3][CA-07.6] decir \"No\" no cambia nada y un nombre ocupado lo explica",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4326,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:33:57.922Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "969ead2f7b23ea9f6997-71db07f164a6a79fa4e0",
+              "file": "participant.spec.ts",
+              "line": 32,
+              "column": 3
+            },
+            {
+              "title": "CP-E-12 [RF-09][RF-10][RF-11][CA-09.2][CA-10.1][CA-10.2][CA-10.4][CA-11.1][CA-11.3] las ideas se escriben antes del sorteo y quien regala ve siempre la última versión",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 8839,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:00.587Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "969ead2f7b23ea9f6997-ba1cdf4293caf6140947",
+              "file": "participant.spec.ts",
+              "line": 54,
+              "column": 3
+            },
+            {
+              "title": "CP-E-13 [RF-15][CA-15.1][CA-15.2] \"No soy yo\" devuelve a la lista antes de ver el resultado y desaparece después",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3584,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:02.282Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "969ead2f7b23ea9f6997-a638e69c2b12467bc198",
+              "file": "participant.spec.ts",
+              "line": 102,
+              "column": 3
+            },
+            {
+              "title": "CP-E-10 [RF-07][RF-08][RF-09][RF-11][RNF-03][RNF-14][CA-07.1][CA-08.1][CA-09.1] una persona mayor ve a quién regala en 3 toques y el móvil la recuerda",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 5747,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:42.361Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "969ead2f7b23ea9f6997-6bcf3dc35fc164ef020e",
+              "file": "participant.spec.ts",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "CP-E-11 [RF-07][CA-07.2][CA-07.3][CA-07.6] decir \"No\" no cambia nada y un nombre ocupado lo explica",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 7145,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:43.407Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "969ead2f7b23ea9f6997-f0c611747e2fab724467",
+              "file": "participant.spec.ts",
+              "line": 32,
+              "column": 3
+            },
+            {
+              "title": "CP-E-12 [RF-09][RF-10][RF-11][CA-09.2][CA-10.1][CA-10.2][CA-10.4][CA-11.1][CA-11.3] las ideas se escriben antes del sorteo y quien regala ve siempre la última versión",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 19880,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:48.135Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "969ead2f7b23ea9f6997-b2c2fe24f8d414940a8a",
+              "file": "participant.spec.ts",
+              "line": 54,
+              "column": 3
+            },
+            {
+              "title": "CP-E-13 [RF-15][CA-15.1][CA-15.2] \"No soy yo\" devuelve a la lista antes de ver el resultado y desaparece después",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 5715,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:50.589Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "969ead2f7b23ea9f6997-f502d596ea7dd1817384",
+              "file": "participant.spec.ts",
+              "line": 102,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "robustness.spec.ts",
+      "file": "robustness.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Errores, seguridad y rendimiento",
+          "file": "robustness.spec.ts",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "CP-E-14 [RF-20][CA-20.1] un enlace incompleto o una página inexistente muestran una salida clara",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1245,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:05.900Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba148508d64c52c9f8cf-d8d32b2957218a94fc5a",
+              "file": "robustness.spec.ts",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "CP-E-15 [RF-20][CA-20.2] sin conexión se explica y se puede reintentar",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1735,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:07.171Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba148508d64c52c9f8cf-bc3c127a2d0171022cdb",
+              "file": "robustness.spec.ts",
+              "line": 20,
+              "column": 3
+            },
+            {
+              "title": "CP-E-16 [RF-01][CA-01.7][AME-08] un nombre con HTML se muestra como texto y no se ejecuta",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2304,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:07.307Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba148508d64c52c9f8cf-8c747ff5f520a4d4b2af",
+              "file": "robustness.spec.ts",
+              "line": 32,
+              "column": 3
+            },
+            {
+              "title": "CP-E-17 [RNF-08][RNF-09][ADR-0011][CA-03.3][AME-09][AME-10] cabeceras de seguridad en todas las respuestas y vista previa genérica",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 899,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:08.925Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba148508d64c52c9f8cf-99c7fa812cefc6bdcf6a",
+              "file": "robustness.spec.ts",
+              "line": 53,
+              "column": 3
+            },
+            {
+              "title": "CP-E-18 [RNF-06] el JavaScript inicial pesa menos de 120 KB comprimido",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 16,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:09.458Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba148508d64c52c9f8cf-2e378ad163c0ec8895b2",
+              "file": "robustness.spec.ts",
+              "line": 82,
+              "column": 3
+            },
+            {
+              "title": "CP-E-19 [RF-07][CA-07.5] un móvil que ya eligió nombre no vuelve a ver la lista",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "android-chrome",
+                  "projectName": "android-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2292,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:09.494Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba148508d64c52c9f8cf-663ba1c9fe2715242b9b",
+              "file": "robustness.spec.ts",
+              "line": 91,
+              "column": 3
+            },
+            {
+              "title": "CP-E-14 [RF-20][CA-20.1] un enlace incompleto o una página inexistente muestran una salida clara",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1805,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:56.335Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba148508d64c52c9f8cf-b64dd16e834900cd4564",
+              "file": "robustness.spec.ts",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "CP-E-15 [RF-20][CA-20.2] sin conexión se explica y se puede reintentar",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2558,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:57.820Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba148508d64c52c9f8cf-83e58afe57c08a9746e0",
+              "file": "robustness.spec.ts",
+              "line": 20,
+              "column": 3
+            },
+            {
+              "title": "CP-E-16 [RF-01][CA-01.7][AME-08] un nombre con HTML se muestra como texto y no se ejecuta",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 3826,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:34:58.162Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba148508d64c52c9f8cf-deae281dca75b130d88d",
+              "file": "robustness.spec.ts",
+              "line": 32,
+              "column": 3
+            },
+            {
+              "title": "CP-E-17 [RNF-08][RNF-09][ADR-0011][CA-03.3][AME-09][AME-10] cabeceras de seguridad en todas las respuestas y vista previa genérica",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1755,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:35:00.413Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba148508d64c52c9f8cf-5841819b54da6ca5fa6d",
+              "file": "robustness.spec.ts",
+              "line": 53,
+              "column": 3
+            },
+            {
+              "title": "CP-E-18 [RNF-06] el JavaScript inicial pesa menos de 120 KB comprimido",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Basta con medirlo una vez",
+                      "location": {
+                        "file": "/Users/eavila/Documents/Claude/Projects/AmigoInvisible2027/tests/e2e/robustness.spec.ts",
+                        "line": 83,
+                        "column": 14
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 2,
+                      "status": "skipped",
+                      "duration": 1,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:35:02.024Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "Basta con medirlo una vez",
+                          "location": {
+                            "file": "/Users/eavila/Documents/Claude/Projects/AmigoInvisible2027/tests/e2e/robustness.spec.ts",
+                            "line": 83,
+                            "column": 14
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ba148508d64c52c9f8cf-9b335e12f58f228d16d3",
+              "file": "robustness.spec.ts",
+              "line": 82,
+              "column": 3
+            },
+            {
+              "title": "CP-E-19 [RF-07][CA-07.5] un móvil que ya eligió nombre no vuelve a ver la lista",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iphone-safari",
+                  "projectName": "iphone-safari",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 3850,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-12T15:35:02.044Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba148508d64c52c9f8cf-263e1631cf0184f37581",
+              "file": "robustness.spec.ts",
+              "line": 91,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-12T15:33:27.959Z",
+    "duration": 100300.90299999999,
+    "expected": 44,
+    "skipped": 2,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

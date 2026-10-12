@@ -1,0 +1,11 @@
+dist
+.wrangler
+coverage
+playwright-report
+test-results
+reports
+package-lock.json
+src/worker/worker-configuration.d.ts
+docs
+*.md
+.claude

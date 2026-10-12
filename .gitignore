@@ -9,3 +9,5 @@ test-results/
 blob-report/
 *.log
 .DS_Store
+playwright-report-prod/
+reports/
