@@ -23,6 +23,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y 
 - Publicado en https://amigo-invisible.amigo-invisible.workers.dev (Cloudflare Workers + D1 WEUR) con despliegue automático y pruebas de producción (6/6).
 - Guía de usuario con capturas reales (`GUIA` 0.3.0), guía de despliegue, runbook, manual de mantenimiento y plan de pruebas.
 - Acciones de GitHub actualizadas a v7.
+- Dirección definitiva: https://reyes.familia-avila-gonzalez.workers.dev (Worker `reyes`, subdominio de cuenta `familia-avila-gonzalez`), elegida por el propietario en lugar de un acortador externo.
 
 ### Eliminado
 - RF-17 (borrado automático diario) y RF-19 (pantallas "¿Cómo funciona?" y "Privacidad").

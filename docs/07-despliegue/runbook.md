@@ -8,13 +8,13 @@ Cada problema sigue el mismo esquema: síntoma → comprobación → solución.
 
 ## La web no abre
 
-1. Abre https://amigo-invisible.amigo-invisible.workers.dev/api/health. Debe responder `{"ok":true}`.
+1. Abre https://reyes.familia-avila-gonzalez.workers.dev/api/health. Debe responder `{"ok":true}`.
 2. Si no responde, revisa https://www.cloudflarestatus.com.
 3. Si Cloudflare está bien, haz rollback al despliegue anterior ([despliegue.md §4](despliegue.md)).
 
 ## "Algo ha fallado" al usar la aplicación
 
-1. Panel de Cloudflare → *Workers & Pages → amigo-invisible → Logs* (observabilidad activada). Los errores aparecen como JSON con `route` y `error`, sin datos personales.
+1. Panel de Cloudflare → *Workers & Pages → reyes → Logs* (observabilidad activada). Los errores aparecen como JSON con `route` y `error`, sin datos personales.
 2. Si empezó tras un despliegue, haz rollback y abre una incidencia en GitHub con el registro.
 
 ## "Demasiados intentos" a una familia
@@ -44,4 +44,4 @@ No consultes la tabla `participants` salvo para diagnóstico: contiene las asign
 
 ## Ver cuánto se usa (cuota gratuita)
 
-Panel de Cloudflare → *Workers & Pages → amigo-invisible → Metrics*. Límite gratuito: 100.000 peticiones al día.
+Panel de Cloudflare → *Workers & Pages → reyes → Metrics*. Límite gratuito: 100.000 peticiones al día.

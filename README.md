@@ -2,7 +2,7 @@
 
 [![CI/CD](https://github.com/eavilag/amigo-invisible/actions/workflows/ci.yml/badge.svg)](https://github.com/eavilag/amigo-invisible/actions/workflows/ci.yml)
 
-**https://amigo-invisible.amigo-invisible.workers.dev**
+**https://reyes.familia-avila-gonzalez.workers.dev**
 
 Aplicación web para organizar un amigo invisible compartiendo **un único enlace por WhatsApp**. Pensada para que la puedan usar personas mayores con poca soltura con el móvil: sin registro, sin contraseñas, letra grande y una sola acción por pantalla.
 

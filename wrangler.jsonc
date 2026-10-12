@@ -1,7 +1,7 @@
 // Configuración del Worker de Cloudflare (ADR-0002, ADR-0003, ADR-0011, ADR-0012).
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "amigo-invisible",
+  "name": "reyes",
   "main": "src/worker/index.ts",
   "compatibility_date": "2026-09-15",
   "assets": {

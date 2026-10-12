@@ -4,7 +4,7 @@
 
 # Guía de uso · Amigo Invisible
 
-**Dirección:** https://amigo-invisible.amigo-invisible.workers.dev
+**Dirección:** https://reyes.familia-avila-gonzalez.workers.dev
 
 > Esta guía está pensada para leerse en voz alta o imprimirse en letra grande. Si a alguien le cuesta entender un paso, **el fallo es de la aplicación, no de la persona**: avísanos para mejorarla.
 
