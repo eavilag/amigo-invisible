@@ -137,7 +137,7 @@ let toastTimer;
 function toast(msg) { clearTimeout(toastTimer); overlay.querySelector('.toast')?.remove(); overlay.insertAdjacentHTML('beforeend', `<div class="toast" role="status">${msg}</div>`); toastTimer = setTimeout(() => overlay.querySelector('.toast')?.remove(), 4000); }
 function dialog(html) { overlay.innerHTML = `<div class="dialog-back"><div class="dialog" role="dialog" aria-modal="true">${html}</div></div>`; overlay.querySelector('.dialog .btn')?.focus(); }
 function closeDialog() { overlay.innerHTML = ''; }
-function footer() { return `<footer><button data-go="ayuda">¿Cómo funciona?</button><button data-go="privacidad">Privacidad</button></footer>`; }
+function footer() { return ''; }
 function facts() { return `<div class="facts"><div class="fact"><small>Entrega</small><span>${S.group.date}</span></div><div class="fact"><small>Presupuesto</small><span>${S.group.budget}</span></div></div>`; }
 
 const screens = {
@@ -151,9 +151,9 @@ const screens = {
       <button class="btn" data-go="mi">Cena de amigos <span class="tag">Participas</span></button></div></section>
     ${footer()}` },
 
-  crear: { label: 'Organizador · 2. Crear grupo', render: () => `
-    <button class="btn back" data-go="portada">‹ Volver</button>
-    <h1>Nuevo amigo invisible</h1>
+  crear: { label: 'Organizador · 2. Crear grupo', render: (edit) => `
+    <button class="btn back" data-go="${edit ? 'organizar' : 'portada'}">‹ Volver</button>
+    <h1>${edit ? 'Cambiar nombres y datos' : 'Nuevo amigo invisible'}</h1>
     <form id="f-create" class="stack" novalidate>
       <div><label for="g-name">Nombre del grupo</label><input id="g-name" value="${esc(S.group.name)}" maxlength="60" autocomplete="off"></div>
       <div><label for="g-date">Fecha de entrega <span class="hint">(si quieres)</span></label><input id="g-date" type="date" value="2027-12-24"></div>
@@ -164,7 +164,8 @@ const screens = {
         <div class="add-row"><input id="p-new" maxlength="30" placeholder="Nombre" aria-label="Nombre de la persona" autocomplete="off"><button type="button" class="btn" id="p-add">Añadir</button></div>
         <div id="p-err" class="field-error" role="alert"></div>
       </div>
-      <button class="btn btn-primary" type="submit">Crear</button>
+      ${edit ? '' : '<p class="hint">Solo se guardan los nombres y las ideas de regalo. Puedes borrarlo todo cuando termine el juego.</p>'}
+      <button class="btn btn-primary" type="submit">${edit ? 'Guardar cambios' : 'Crear'}</button>
     </form>`,
     bind: () => {
       const add = () => { const i = document.getElementById('p-new'); const v = i.value.trim(); const err = document.getElementById('p-err');
@@ -172,14 +173,17 @@ const screens = {
         if (!v) { err.textContent = 'Escribe un nombre.'; return; }
         if (S.draft.some(n => norm(n) === norm(v))) { err.textContent = `Ya hay alguien llamado ${v}. Añade una inicial, por ejemplo «${v} G.»`; return; }
         if (S.draft.length >= 40) { err.textContent = 'Máximo 40 personas.'; return; }
-        S.draft.push(v); go('crear'); setTimeout(() => document.getElementById('p-new').focus()); };
+        S.draft.push(v); go(current); setTimeout(() => document.getElementById('p-new')?.focus()); };
       document.getElementById('p-add').onclick = add;
       document.getElementById('p-new').onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); add(); } };
-      app.querySelectorAll('[data-del]').forEach(b => b.onclick = () => { S.draft.splice(+b.dataset.del, 1); go('crear'); });
+      app.querySelectorAll('[data-del]').forEach(b => b.onclick = () => { S.draft.splice(+b.dataset.del, 1); go(current); });
       document.getElementById('f-create').onsubmit = e => { e.preventDefault();
         if (S.draft.length < 3) { document.getElementById('p-err').textContent = 'Hacen falta al menos 3 personas.'; return; }
-        S.group.name = document.getElementById('g-name').value.trim() || S.group.name; S.drawn = false; go('organizar'); toast('¡Creado! Ahora haz el sorteo.'); };
+        const editing = current === 'editar';
+        S.group.name = document.getElementById('g-name').value.trim() || S.group.name; S.drawn = false; go('organizar'); toast(editing ? 'Cambios guardados' : '¡Creado! Ya puedes enviar el enlace.'); };
     } },
+
+  editar: { label: 'Organizador · 3b. Cambiar nombres (antes del sorteo)', render: () => screens.crear.render(true), bind: () => screens.crear.bind() },
 
   organizar: { label: 'Organizador · 3. Panel del organizador', render: () => {
     const seen = S.people.filter(p => p.state === 'seen').length;
@@ -187,12 +191,15 @@ const screens = {
     <button class="btn back" data-go="portada">‹ Inicio</button>
     <div><p class="muted">Organizas</p><h1>${esc(S.group.name)}</h1></div>
     ${facts()}
-    ${S.drawn ? `<div class="ok">✓ Sorteo hecho. Nadie, ni siquiera tú, puede ver los resultados de los demás.</div>` : `
-      <section class="card"><h2>Paso 1 · Haz el sorteo</h2><p>Cuando estén todos los nombres, pulsa el botón. Puedes enviar el enlace antes o después.</p>
-      <button class="btn btn-primary" data-act="sortear">Hacer el sorteo</button></section>`}
-    <section class="card"><h2>${S.drawn ? '' : 'Paso 2 · '}Envía el enlace al grupo</h2><p>Un solo enlace para todos. Cada persona elige su nombre.</p>
+    ${S.drawn ? `<div class="ok">✓ Sorteo hecho. Nadie, ni siquiera tú, puede ver los resultados de los demás.</div>` : ''}
+    <section class="card"><h2>${S.drawn ? '' : '1 · '}Envía el enlace al grupo</h2>
+      <p>Un solo enlace para todos. ${S.drawn ? 'Cada persona elige su nombre y ve a quién regala.' : 'Ya puedes enviarlo: cada persona puede elegir su nombre y escribir sus ideas antes del sorteo.'}</p>
       <button class="btn btn-wa" data-act="wa">${WA} Enviar por WhatsApp</button>
       <button class="btn" data-act="copy">Copiar enlace</button></section>
+    ${S.drawn ? '' : `<section class="card"><h2>2 · Cuando todo esté bien, haz el sorteo</h2>
+      <p>Si hay algún nombre mal escrito o alguien tocó el nombre de otro, corrígelo antes de sortear.</p>
+      <button class="btn" data-go="editar">Cambiar nombres o datos</button>
+      <button class="btn btn-primary" data-act="sortear">Hacer el sorteo</button></section>`}
     <section class="stack" aria-labelledby="seg"><h2 id="seg">¿Quién lo ha visto ya?</h2>
       ${S.drawn ? `<p><strong>${seen} de ${S.people.length}</strong> ya saben a quién regalan.</p><div class="progress" aria-hidden="true"><div style="width:${seen / S.people.length * 100}%"></div></div>` : ''}
       <ul class="status">${S.people.map((p, i) => `<li><span>${esc(p.name)}</span>
@@ -203,9 +210,9 @@ const screens = {
       <button class="btn" data-act="savelink">${WA} Enviármelo por WhatsApp</button></section>
     <details class="card"><summary style="font-weight:700;min-height:2.75rem;cursor:pointer">Más opciones</summary>
       <div class="stack" style="margin-top:.6rem">
-      ${S.drawn ? '<button class="btn" data-act="redraw">Repetir el sorteo</button><button class="btn" data-act="undo">Deshacer el sorteo para cambiar personas</button>' : '<button class="btn" data-go="crear">Cambiar nombres o datos</button>'}
+      ${S.drawn ? '<button class="btn" data-act="redraw">Repetir el sorteo</button><button class="btn" data-act="undo">Deshacer el sorteo para cambiar personas</button>' : ''}
       <button class="btn" data-act="delete">Borrar este amigo invisible</button>
-      <p class="hint">Se borrará automáticamente el 23 de enero de 2028.</p></div></details>`; },
+      <p class="hint">Cuando termine el juego, puedes borrarlo todo.</p></div></details>`; },
     bind: () => {
       const msg = `🎁 ¡Amigo invisible «${esc(S.group.name)}»! Toca este enlace, elige tu nombre y descubre a quién le haces el regalo: https://amigo-invisible.example/g/X7k2mQ9pLr4tWz8aB1cD3e`;
       on('sortear', () => dialog(`<h2>¿Hacer el sorteo ahora?</h2><p>Se repartirá a ${S.people.length} personas. Tú tampoco verás quién le toca a cada uno.</p>
@@ -265,23 +272,7 @@ const screens = {
     bind: () => { const t = document.getElementById('wish'); t.oninput = () => document.getElementById('count').textContent = `${t.value.length} de 500 letras`;
       document.getElementById('f-wish').onsubmit = e => { e.preventDefault(); S.people.find(p => p.name === S.me).wish = t.value; go('mi'); toast('Guardado'); }; } },
 
-  ayuda: { label: 'Común · 8. ¿Cómo funciona?', render: () => `
-    <button class="btn back" data-go="portada">‹ Volver</button>
-    <h1>¿Cómo funciona?</h1>
-    <ol class="steps"><li><div><strong>Quien organiza</strong> escribe los nombres y pulsa «Hacer el sorteo».</div></li>
-      <li><div>Manda <strong>un enlace</strong> al grupo de WhatsApp.</div></li>
-      <li><div>Cada persona <strong>toca el enlace</strong>, toca su nombre y ve a quién le hace el regalo.</div></li></ol>
-    <div class="card"><p>No hace falta registrarse ni descargar nada. Nadie puede ver a quién le ha tocado a los demás.</p></div>` },
-
-  privacidad: { label: 'Común · 9. Privacidad', render: () => `
-    <button class="btn back" data-go="portada">‹ Volver</button>
-    <h1>Tus datos</h1>
-    <div class="stack"><p><strong>Qué guardamos:</strong> el nombre del grupo, los nombres que escribe quien organiza y las ideas de regalo.</p>
-    <p><strong>Qué no guardamos:</strong> ni teléfonos, ni correos, ni contraseñas.</p>
-    <p><strong>Quién lo ve:</strong> cada persona solo ve a quién regala y sus ideas de regalo.</p>
-    <p><strong>Cuánto tiempo:</strong> todo se borra solo un mes después de la fecha de entrega.</p></div>` },
-
-  error: { label: 'Común · 10. Enlace no válido', render: () => `
+  error: { label: 'Común · 8. Enlace no válido', render: () => `
     ${GIFT}
     <h1>No encontramos este amigo invisible</h1>
     <p>Puede que el enlace esté incompleto o que el grupo se haya borrado. Pide a quien organiza que te lo vuelva a enviar.</p>
@@ -294,7 +285,8 @@ const _dialog = dialog;
 dialog = (html, yes) => { pendingYes = yes || null; _dialog(html); };
 overlay.addEventListener('click', e => { const d = e.target.closest('[data-dlg]'); if (!d) return; const y = pendingYes; closeDialog(); if (d.dataset.dlg === 'yes' && y) y(); });
 
-function go(id) { const s = screens[id]; app.innerHTML = s.render(); s.bind?.(); jump.value = id; app.querySelectorAll('[data-go]').forEach(b => b.onclick = () => { go(b.dataset.go); window.scrollTo(0, 0); }); app.querySelectorAll('footer [data-go]').forEach(b => b.onclick = () => { go(b.dataset.go); window.scrollTo(0, 0); }); const h = app.querySelector('h1'); if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); } }
+let current = 'portada';
+function go(id) { current = id; const s = screens[id]; app.innerHTML = s.render(); s.bind?.(); jump.value = id; app.querySelectorAll('[data-go]').forEach(b => b.onclick = () => { go(b.dataset.go); window.scrollTo(0, 0); }); app.querySelectorAll('footer [data-go]').forEach(b => b.onclick = () => { go(b.dataset.go); window.scrollTo(0, 0); }); const h = app.querySelector('h1'); if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); } }
 const jump = document.getElementById('jump');
 jump.innerHTML = Object.entries(screens).map(([k, v]) => `<option value="${k}">${v.label}</option>`).join('');
 jump.onchange = () => { closeDialog(); go(jump.value); window.scrollTo(0, 0); };

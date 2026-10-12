@@ -1,6 +1,6 @@
 | ID | Versión | Estado | Fecha |
 |---|---|---|---|
-| GUIA | 0.1.0 | Borrador temprano (Puerta P2) | 2026-10-11 |
+| GUIA | 0.2.0 | Borrador temprano (Puerta P2) | 2026-10-12 |
 
 # Guía de uso · Amigo Invisible
 
@@ -46,11 +46,15 @@ Toca **el mismo enlace** de WhatsApp. El móvil te recordará y verás directame
 3. Escribe cada nombre y toca **"Añadir"**. **No te olvides de ponerte a ti** si participas. Si hay dos personas con el mismo nombre, añade una inicial (*Ana G.*, *Ana M.*).
 4. Toca **"Crear"**.
 
-### 2. Hacer el sorteo
-Toca **"Hacer el sorteo"** y confirma. Tú tampoco verás quién le toca a cada uno, así que puedes participar tranquilamente.
-
-### 3. Enviar el enlace
+### 2. Enviar el enlace
 Toca **"Enviar por WhatsApp"**, elige el grupo de la familia y envía. **Un solo enlace sirve para todos.**
+
+No hace falta haber sorteado: cada persona puede ir entrando, elegir su nombre y escribir sus ideas de regalo.
+
+### 3. Corregir y hacer el sorteo
+Si ves un nombre mal escrito, toca **"Cambiar nombres o datos"**. Si alguien tocó el nombre de otra persona, toca **"Dejar entrar de nuevo"** junto a ese nombre. Antes del sorteo, corregir no tiene ninguna consecuencia.
+
+Cuando todo esté bien, toca **"Hacer el sorteo"** y confirma. Tú tampoco verás quién le toca a cada uno, así que puedes participar tranquilamente. (Si lo prefieres, puedes sortear antes de enviar el enlace.)
 
 ### 4. Guarda tu enlace de organizador
 Toca **"Enviármelo por WhatsApp"** y mándatelo a ti mismo (o a tu chat de notas). Si cambias de móvil, con ese enlace vuelves a tu panel. **No lo compartas.**
@@ -72,9 +76,10 @@ Toca **"Recordar por WhatsApp"** para mandar un recordatorio al grupo.
 | He perdido mi panel de organizador | Abre el enlace de organizador que te enviaste. Sin él no se puede recuperar (por seguridad): crea un grupo nuevo. |
 
 ### Al terminar
-Puedes borrar el grupo en *Más opciones* → **"Borrar este amigo invisible"**. Si no lo haces, se borra solo un mes después de la fecha de entrega.
+Borra el grupo en *Más opciones* → **"Borrar este amigo invisible"**. Se borran todos los nombres y las ideas de regalo, y el enlace deja de funcionar. Si no lo borras, se queda guardado.
 
 ## Historial
 | Versión | Fecha | Cambio |
 |---|---|---|
 | 0.1.0 | 2026-10-11 | Primera versión, basada en el prototipo. Se validará con la aplicación real y con capturas de pantalla |
+| 0.2.0 | 2026-10-12 | Flujo flexible (enviar antes de sortear y corregir); borrado solo manual |

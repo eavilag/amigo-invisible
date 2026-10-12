@@ -1,6 +1,6 @@
 | ID | Versión | Estado | Fecha |
 |---|---|---|---|
-| SPEC | 0.1.1 | En revisión (Puerta P1) | 2026-10-11 |
+| SPEC | 0.2.0 | En revisión (Puerta P1) | 2026-10-12 |
 
 # Especificación de requisitos · Amigo Invisible
 
@@ -63,7 +63,12 @@ ORGANIZADOR                                   PARTICIPANTE
    a los que faltan por WhatsApp
 ```
 
-El sorteo puede hacerse antes o después de que la gente elija su nombre: como los nombres los escribe el organizador, no hace falta esperar a nadie.
+### Flujo flexible
+El flujo anterior es el habitual, pero **ningún paso obliga al siguiente**:
+- El enlace del grupo existe desde el momento de crearlo: el organizador puede enviarlo por WhatsApp **antes de sortear**, dejar que cada persona elija su nombre y escriba sus ideas, corregir equivocaciones (nombres mal escritos, alguien que tocó el nombre de otro) y **sortear al final**, cuando todo esté bien.
+- Cada participante puede escribir o cambiar sus ideas de regalo **en cualquier momento**, antes o después del sorteo.
+- Tras el sorteo, cada participante puede consultar **en cualquier momento** a quién regala y las ideas de esa persona, siempre en su versión más reciente.
+- Esta flexibilidad no añade pantallas ni pasos: el participante tiene todo en una única pantalla personal y el organizador en un único panel (RNF-14).
 
 ## 7. Historias de usuario
 
@@ -97,6 +102,7 @@ El organizador crea un grupo con: nombre del grupo (obligatorio, 1–60 caracter
 - **CA-01.5** Dado que escribo una fecha pasada, cuando pulso "Crear", entonces veo "La fecha ya ha pasado".
 - **CA-01.6** Dado un nombre vacío o de más de 30 caracteres, o un nombre de grupo vacío o de más de 60, entonces se indica el error junto al campo y no se crea el grupo.
 - **CA-01.7** Los textos con etiquetas HTML o caracteres especiales (p. ej. `<script>`) se guardan y muestran como texto literal, nunca se interpretan.
+- **CA-01.8** La pantalla de crear muestra una línea informativa: "Solo se guardan los nombres y las ideas de regalo. Puedes borrarlo todo cuando termine el juego." (sustituye a la página de privacidad, ver RF-19).
 
 ### RF-02 · Acceso del organizador — P0 — (HU-06)
 Al crear el grupo se genera un enlace de organizador secreto. El dispositivo que creó el grupo lo recuerda automáticamente. Además se ofrece "Guardar mi enlace de organizador" (enviármelo por WhatsApp o copiarlo).
@@ -112,6 +118,7 @@ La pantalla del organizador ofrece "Enviar por WhatsApp" (abre WhatsApp con un m
 - **CA-03.1** Cuando pulso "Enviar por WhatsApp", entonces se abre WhatsApp con el texto: "🎁 ¡Amigo invisible «{grupo}»! Toca este enlace, elige tu nombre y descubre a quién le haces el regalo: {enlace}".
 - **CA-03.2** Cuando pulso "Copiar enlace", entonces el enlace se copia y veo "Enlace copiado".
 - **CA-03.3** La vista previa del enlace en WhatsApp muestra un título genérico ("Amigo Invisible") y no revela nombres ni datos del grupo.
+- **CA-03.4** Los botones de compartir están disponibles desde que se crea el grupo, sin necesidad de haber hecho el sorteo.
 
 ### RF-04 · Modificar el grupo antes del sorteo — P0 — (HU-05)
 Antes del sorteo, el organizador puede cambiar nombre del grupo, fecha, presupuesto, y añadir, quitar o renombrar participantes, con las mismas reglas que RF-01.
@@ -119,6 +126,8 @@ Antes del sorteo, el organizador puede cambiar nombre del grupo, fecha, presupue
 - **CA-04.1** Dado un grupo sin sortear, cuando cambio "Pepe" por "José", entonces todos ven "José".
 - **CA-04.2** Dado un grupo con 3 participantes, entonces no puedo quitar ninguno ("Hacen falta al menos 3 personas").
 - **CA-04.3** Dado que quito a un participante que ya había elegido su nombre, entonces su móvil deja de estar asociado y, si vuelve a abrir el enlace, ve la lista de nombres.
+- **CA-04.4** Dado un grupo sin sortear y con el enlace ya enviado, cuando corrijo nombres o dejo entrar de nuevo a alguien (RF-14), entonces no hay ninguna otra consecuencia, porque todavía no hay resultados.
+- **CA-04.5** La opción de cambiar nombres y datos está a la vista en el panel mientras no se haya sorteado (no escondida en un menú).
 
 ### RF-05 · Hacer el sorteo — P0 — (HU-02, HU-12)
 El organizador pulsa "Hacer el sorteo" y confirma. El sistema asigna a cada participante otra persona a quien regalar.
@@ -172,12 +181,14 @@ Cada participante puede escribir y cambiar en cualquier momento su lista de dese
 - **CA-10.1** Cuando escribo mis ideas y pulso "Guardar", entonces veo "Guardado" y quien me regala lo ve.
 - **CA-10.2** Un texto de más de 500 caracteres no se puede guardar y se muestra el contador.
 - **CA-10.3** Puedo dejar la lista vacía.
+- **CA-10.4** Puedo escribir y cambiar mi lista tanto antes como después del sorteo, con el mismo botón de mi pantalla personal.
 
 ### RF-11 · Lista de deseos de mi amigo invisible — P0 — (HU-11)
 Junto al nombre de mi amigo invisible veo su lista de deseos, o "Todavía no ha escrito ideas" si está vacía.
 
 - **CA-11.1** Dado que mi amigo invisible escribió ideas, cuando veo mi resultado, entonces aparecen sus ideas.
 - **CA-11.2** Solo veo la lista de deseos de mi amigo invisible, no la de otros.
+- **CA-11.3** Si mi amigo invisible cambia sus ideas después de que yo las haya visto, al volver a mirar veo la versión actualizada.
 
 ### RF-12 · Seguimiento del organizador — P0 — (HU-04)
 La pantalla del organizador muestra cada participante con su estado: "Sin entrar", "Ha entrado" o "Ha visto a su amigo", y un resumen ("5 de 8 ya lo han visto").
@@ -208,11 +219,8 @@ El organizador puede borrar el grupo y todos sus datos, con confirmación.
 
 - **CA-16.1** Cuando confirmo el borrado, entonces el grupo y todos sus datos desaparecen y cualquiera que abra el enlace ve "Este amigo invisible ya no existe".
 
-### RF-17 · Borrado automático — P0 — (Constitución §2)
-Los grupos se borran solos: 30 días después de la fecha de entrega, o 90 días después de su creación si no tienen fecha. En ningún caso duran más de 400 días.
-
-- **CA-17.1** Un proceso diario elimina los grupos que han superado su fecha de caducidad.
-- **CA-17.2** La pantalla del organizador informa: "Este amigo invisible se borrará automáticamente el {fecha}".
+### RF-17 · ~~Borrado automático~~ — **Eliminado en v0.2.0**
+Descartado por el propietario: no se quiere ningún proceso recurrente. Los datos se conservan hasta que el organizador borra el grupo (RF-16). Ver ADR de privacidad.
 
 ### RF-18 · Mis grupos — P1 — (HU-06, HU-09)
 La portada muestra los grupos en los que este móvil participa u organiza, para entrar con un toque.
@@ -220,10 +228,8 @@ La portada muestra los grupos en los que este móvil participa u organiza, para 
 - **CA-18.1** Dado que organizo un grupo y participo en otro, cuando abro la portada, veo ambos con la etiqueta "Organizas" / "Participas".
 - **CA-18.2** Los grupos borrados desaparecen de la lista al detectarse.
 
-### RF-19 · Ayuda y privacidad — P0
-Página "¿Cómo funciona?" con 3 pasos ilustrados y página de privacidad en lenguaje sencillo (qué datos se guardan, cuánto tiempo y quién los ve).
-
-- **CA-19.1** Ambas páginas son accesibles desde la portada y desde el pie de cada pantalla.
+### RF-19 · ~~Ayuda y privacidad~~ — **Eliminado en v0.2.0**
+Descartado por el propietario: las pantallas "¿Cómo funciona?" y "Privacidad" no son necesarias. La información imprescindible se da en una línea dentro de la pantalla de crear (CA-01.8).
 
 ### RF-20 · Mensajes de error comprensibles — P0
 Ante cualquier fallo se muestra un mensaje en lenguaje llano con una única salida clara.
@@ -245,14 +251,15 @@ Ante cualquier fallo se muestra un mensaje en lenguaje llano con una única sali
 | RNF-06 | Rendimiento | Carga inicial < 2,5 s en 4G; JavaScript inicial < 120 KB comprimido; respuesta de la API < 300 ms (p95) | Lighthouse + medición de bundle |
 | RNF-07 | Disponibilidad | Servicio sin "arranque en frío" ni suspensión por inactividad; ≥ 99,9 % | Plataforma (ADR) |
 | RNF-08 | Seguridad | Ver modelo de amenazas `SEC`: identificadores y secretos ≥ 128 bits aleatorios, secretos guardados con hash, validación estricta, cabeceras de seguridad (CSP, HSTS...), límites de uso, sin scripts de terceros, HTTPS obligatorio | Pruebas de seguridad automáticas + revisión |
-| RNF-09 | Privacidad | Solo se guardan nombres de pila y listas de deseos. Sin cookies de seguimiento ni analítica de terceros (no requiere banner de cookies). Retención limitada (RF-17). No se indexa en buscadores | Revisión + pruebas |
+| RNF-09 | Privacidad | Solo se guardan nombres de pila y listas de deseos. Sin cookies de seguimiento ni analítica de terceros (no requiere banner de cookies). Los datos se conservan hasta que el organizador borra el grupo (RF-16). No se indexa en buscadores | Revisión + pruebas |
 | RNF-10 | Mantenibilidad | TypeScript estricto, lint sin avisos, cobertura ≥ 90 % en lógica de dominio, CI en cada cambio, documentación de mantenimiento | CI |
 | RNF-11 | Coste y operación | 0 €/mes en el plan gratuito; despliegue automático; sin servidores que mantener | Plataforma (ADR) |
 | RNF-12 | Idioma | Español de España, lenguaje llano; textos centralizados en un único fichero | Revisión |
 | RNF-13 | Observabilidad | Registros de errores sin datos personales (sin nombres, listas ni secretos) | Revisión de código |
+| RNF-14 | Navegación sencilla | El participante tiene todo en una pantalla personal: ver a quién regala y escribir sus ideas están a 1 toque. El organizador tiene todo en un único panel. Nunca más de 2 niveles de profundidad y siempre un botón "Volver" visible | Prueba E2E de recorridos |
 
 ## 10. Consideraciones futuras (P2)
-Diseñar de forma que no se impida más adelante: exclusiones entre participantes, varios idiomas, PIN opcional, mostrar el resultado tras una fecha concreta.
+Diseñar de forma que no se impida más adelante: exclusiones entre participantes, varios idiomas, PIN opcional, mostrar el resultado tras una fecha concreta, borrado por caducidad (descartado en v0.2.0, podría hacerse sin procesos recurrentes borrando al abrir un grupo caducado).
 
 ## 11. Preguntas abiertas
 | # | Pregunta | Quién | ¿Bloquea? |
@@ -272,3 +279,4 @@ Diseñar de forma que no se impida más adelante: exclusiones entre participante
 |---|---|---|
 | 0.1.0 | 2026-10-11 | Primer borrador para revisión (decisiones previas: enlace de grupo, lista de deseos, seguimiento, Cloudflare, repo público) |
 | 0.1.1 | 2026-10-11 | PA-1 resuelta: subdominio gratuito workers.dev |
+| 0.2.0 | 2026-10-12 | Revisión del propietario: se explicita el flujo flexible (§6, CA-03.4, CA-04.4, CA-04.5, CA-10.4, CA-11.3); nuevo RNF-14 de navegación; se eliminan RF-17 (borrado automático) y RF-19 (ayuda y privacidad); se añade CA-01.8 |

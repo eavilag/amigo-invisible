@@ -1,6 +1,6 @@
 | ID | Versión | Estado | Fecha |
 |---|---|---|---|
-| CONST | 1.0.0 | Aprobado | 2026-10-11 |
+| CONST | 2.0.0 | Aprobado | 2026-10-12 |
 
 # Constitución del proyecto
 
@@ -17,7 +17,7 @@ El usuario de referencia es una persona de más de 75 años, con poca destreza c
 ## 2. Privacidad por defecto
 - Se recoge el mínimo imprescindible: nombres de pila y la lista de deseos. Nada de teléfonos, correos ni cuentas.
 - Nadie, tampoco el organizador ni el administrador del sistema a través de la aplicación, ve emparejamientos ajenos.
-- Los datos se borran automáticamente cuando el juego ya no es útil.
+- Quien organiza puede borrar todos los datos del grupo en cualquier momento, de forma inmediata y definitiva.
 
 ## 3. Seguro en Internet desde el primer día
 - Identificadores imposibles de adivinar, secretos guardados con hash, validación estricta de toda entrada, cabeceras de seguridad, sin scripts de terceros y límites de uso frente a abusos.
@@ -33,3 +33,9 @@ El usuario de referencia es una persona de más de 75 años, con poca destreza c
 ## 6. Calidad verificable
 - TypeScript estricto, lint y pruebas automáticas en cada cambio (integración continua).
 - Las pruebas extremo a extremo se ejecutan también contra producción tras cada despliegue.
+
+## Historial
+| Versión | Fecha | Cambio |
+|---|---|---|
+| 1.0.0 | 2026-10-11 | Versión inicial |
+| 2.0.0 | 2026-10-12 | §2: se sustituye el borrado automático por el borrado inmediato a cargo del organizador (decisión del propietario: sin procesos recurrentes) |
