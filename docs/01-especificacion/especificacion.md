@@ -1,6 +1,6 @@
 | ID | Versión | Estado | Fecha |
 |---|---|---|---|
-| SPEC | 0.2.0 | En revisión (Puerta P1) | 2026-10-12 |
+| SPEC | 1.0.0 | Aprobado (Puerta P1, 2026-10-12) | 2026-10-12 |
 
 # Especificación de requisitos · Amigo Invisible
 
@@ -280,3 +280,4 @@ Diseñar de forma que no se impida más adelante: exclusiones entre participante
 | 0.1.0 | 2026-10-11 | Primer borrador para revisión (decisiones previas: enlace de grupo, lista de deseos, seguimiento, Cloudflare, repo público) |
 | 0.1.1 | 2026-10-11 | PA-1 resuelta: subdominio gratuito workers.dev |
 | 0.2.0 | 2026-10-12 | Revisión del propietario: se explicita el flujo flexible (§6, CA-03.4, CA-04.4, CA-04.5, CA-10.4, CA-11.3); nuevo RNF-14 de navegación; se eliminan RF-17 (borrado automático) y RF-19 (ayuda y privacidad); se añade CA-01.8 |
+| 1.0.0 | 2026-10-12 | **Aprobada por el propietario (Puerta P1).** Línea base de requisitos |
