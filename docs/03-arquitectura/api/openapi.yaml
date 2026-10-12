@@ -1,0 +1,381 @@
+openapi: 3.1.0
+info:
+  title: Amigo Invisible API
+  version: 1.0.0
+  description: |
+    Contrato de la API (ARQ 1.0.0). Los esquemas de validación ejecutables están en
+    `src/shared/schemas.ts`; este documento y ese fichero deben mantenerse alineados.
+    Autenticación por capacidades (ADR-0006): `Authorization: Bearer <secreto>`.
+    Todas las respuestas llevan `Cache-Control: no-store`.
+servers:
+  - url: /api
+tags:
+  - name: público
+  - name: participante
+  - name: organizador
+
+components:
+  securitySchemes:
+    participantToken:
+      type: http
+      scheme: bearer
+      description: Token de 256 bits devuelto por /claim (base64url, 43 caracteres).
+    adminKey:
+      type: http
+      scheme: bearer
+      description: Clave de organizador de 256 bits devuelta al crear el grupo.
+  parameters:
+    gid:
+      name: gid
+      in: path
+      required: true
+      schema: { $ref: '#/components/schemas/Id' }
+    pid:
+      name: pid
+      in: path
+      required: true
+      schema: { $ref: '#/components/schemas/Id' }
+  schemas:
+    Id:
+      type: string
+      pattern: '^[A-Za-z0-9_-]{22}$'
+      description: 128 bits aleatorios en base64url.
+    GroupName: { type: string, minLength: 1, maxLength: 60 }
+    PersonName: { type: string, minLength: 1, maxLength: 30 }
+    DeliveryDate:
+      type: [string, 'null']
+      format: date
+      description: YYYY-MM-DD. Al crear o cambiar no puede ser anterior a hoy (hora de Madrid).
+    Budget: { type: [string, 'null'], maxLength: 30 }
+    Wishlist: { type: string, maxLength: 500 }
+    GroupInfo:
+      type: object
+      required: [id, name, deliveryDate, budget, drawn]
+      properties:
+        id: { $ref: '#/components/schemas/Id' }
+        name: { $ref: '#/components/schemas/GroupName' }
+        deliveryDate: { $ref: '#/components/schemas/DeliveryDate' }
+        budget: { $ref: '#/components/schemas/Budget' }
+        drawn: { type: boolean }
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+          enum:
+            - VALIDATION          # 400 entrada inválida
+            - TOO_FEW             # 400 menos de 3 participantes
+            - TOO_MANY            # 400 más de 40
+            - DUPLICATE_NAME      # 400 nombres iguales tras normalizar
+            - DATE_IN_PAST        # 400
+            - UNAUTHORIZED        # 401 secreto ausente, incorrecto o de otro grupo
+            - NOT_FOUND           # 404 grupo o participante inexistente
+            - ALREADY_CLAIMED     # 409 nombre ya elegido
+            - DEVICE_HAS_NAME     # 409 este móvil ya tiene un nombre en el grupo
+            - ALREADY_DRAWN       # 409 operación no permitida tras el sorteo
+            - NOT_DRAWN           # 409 operación que requiere sorteo
+            - ALREADY_VIEWED      # 409 "No soy yo" tras ver el resultado
+            - CONFLICT            # 409 escritura concurrente; reintentar
+            - PAYLOAD_TOO_LARGE   # 413 cuerpo > 16 KB
+            - RATE_LIMITED        # 429
+            - INTERNAL            # 500
+        field:
+          type: string
+          description: Campo afectado (p. ej. `participants.2`), solo en errores de validación.
+        name:
+          type: string
+          description: Nombre afectado, solo en DUPLICATE_NAME.
+  responses:
+    Error:
+      description: Error
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+
+paths:
+  /health:
+    get:
+      tags: [público]
+      summary: Comprobación de vida
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { type: object, properties: { ok: { const: true } } } } } }
+
+  /groups:
+    post:
+      tags: [público]
+      summary: Crear grupo (RF-01, RF-02)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, participants]
+              additionalProperties: false
+              properties:
+                name: { $ref: '#/components/schemas/GroupName' }
+                deliveryDate: { $ref: '#/components/schemas/DeliveryDate' }
+                budget: { $ref: '#/components/schemas/Budget' }
+                participants:
+                  type: array
+                  minItems: 3
+                  maxItems: 40
+                  items: { $ref: '#/components/schemas/PersonName' }
+      responses:
+        '201':
+          description: Creado. `adminKey` solo se devuelve aquí, una vez.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [groupId, adminKey]
+                properties:
+                  groupId: { $ref: '#/components/schemas/Id' }
+                  adminKey: { type: string }
+        '400': { $ref: '#/components/responses/Error' }
+        '413': { $ref: '#/components/responses/Error' }
+        '429': { $ref: '#/components/responses/Error' }
+
+  /groups/{gid}:
+    parameters: [{ $ref: '#/components/parameters/gid' }]
+    get:
+      tags: [público]
+      summary: Datos públicos del grupo para elegir nombre (RF-07). Nunca incluye asignaciones ni listas.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/GroupInfo'
+                  - type: object
+                    required: [participants]
+                    properties:
+                      participants:
+                        type: array
+                        items:
+                          type: object
+                          required: [id, name, claimed]
+                          properties:
+                            id: { $ref: '#/components/schemas/Id' }
+                            name: { $ref: '#/components/schemas/PersonName' }
+                            claimed: { type: boolean }
+        '404': { $ref: '#/components/responses/Error' }
+
+  /groups/{gid}/claim:
+    parameters: [{ $ref: '#/components/parameters/gid' }]
+    post:
+      tags: [público]
+      summary: Elegir mi nombre (RF-07). Si se envía un token válido de este grupo, responde DEVICE_HAS_NAME (CA-07.5).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [participantId]
+              properties:
+                participantId: { $ref: '#/components/schemas/Id' }
+      responses:
+        '200':
+          description: Nombre asociado. `participantToken` solo se devuelve aquí.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [participantToken, participantId]
+                properties:
+                  participantToken: { type: string }
+                  participantId: { $ref: '#/components/schemas/Id' }
+        '404': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+
+  /groups/{gid}/me:
+    parameters: [{ $ref: '#/components/parameters/gid' }]
+    get:
+      tags: [participante]
+      security: [{ participantToken: [] }]
+      summary: Mi pantalla personal (RF-08)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [group, participant]
+                properties:
+                  group: { $ref: '#/components/schemas/GroupInfo' }
+                  participant:
+                    type: object
+                    required: [id, name, wishlist, viewed]
+                    properties:
+                      id: { $ref: '#/components/schemas/Id' }
+                      name: { $ref: '#/components/schemas/PersonName' }
+                      wishlist: { $ref: '#/components/schemas/Wishlist' }
+                      viewed: { type: boolean }
+        '401': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+
+  /groups/{gid}/me/reveal:
+    parameters: [{ $ref: '#/components/parameters/gid' }]
+    post:
+      tags: [participante]
+      security: [{ participantToken: [] }]
+      summary: Ver a quién regalo (RF-09, RF-11). Marca "ha visto". Idempotente.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [receiver]
+                properties:
+                  receiver:
+                    type: object
+                    required: [name, wishlist]
+                    properties:
+                      name: { $ref: '#/components/schemas/PersonName' }
+                      wishlist: { $ref: '#/components/schemas/Wishlist' }
+        '401': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+
+  /groups/{gid}/me/wishlist:
+    parameters: [{ $ref: '#/components/parameters/gid' }]
+    put:
+      tags: [participante]
+      security: [{ participantToken: [] }]
+      summary: Guardar mi lista de deseos (RF-10). Permitido antes y después del sorteo.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [wishlist]
+              properties:
+                wishlist: { $ref: '#/components/schemas/Wishlist' }
+      responses:
+        '204': { description: Guardado }
+        '400': { $ref: '#/components/responses/Error' }
+        '401': { $ref: '#/components/responses/Error' }
+
+  /groups/{gid}/me/claim:
+    parameters: [{ $ref: '#/components/parameters/gid' }]
+    delete:
+      tags: [participante]
+      security: [{ participantToken: [] }]
+      summary: '"No soy yo": liberar mi nombre si no he visto el resultado (RF-15)'
+      responses:
+        '204': { description: Liberado }
+        '401': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+
+  /groups/{gid}/admin:
+    parameters: [{ $ref: '#/components/parameters/gid' }]
+    get:
+      tags: [organizador]
+      security: [{ adminKey: [] }]
+      summary: Panel del organizador (RF-12). Nunca incluye asignaciones ni listas.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/GroupInfo'
+                  - type: object
+                    required: [participants]
+                    properties:
+                      participants:
+                        type: array
+                        items:
+                          type: object
+                          required: [id, name, status]
+                          properties:
+                            id: { $ref: '#/components/schemas/Id' }
+                            name: { $ref: '#/components/schemas/PersonName' }
+                            status: { type: string, enum: [out, in, seen] }
+        '401': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+    patch:
+      tags: [organizador]
+      security: [{ adminKey: [] }]
+      summary: |
+        Cambiar datos (RF-04). `participants` es la lista completa deseada: elementos con `id`
+        se renombran, sin `id` se crean, los ausentes se eliminan. Tras el sorteo, enviar
+        `participants` devuelve ALREADY_DRAWN (CA-05.4).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                name: { $ref: '#/components/schemas/GroupName' }
+                deliveryDate: { $ref: '#/components/schemas/DeliveryDate' }
+                budget: { $ref: '#/components/schemas/Budget' }
+                participants:
+                  type: array
+                  minItems: 3
+                  maxItems: 40
+                  items:
+                    type: object
+                    required: [name]
+                    properties:
+                      id: { $ref: '#/components/schemas/Id' }
+                      name: { $ref: '#/components/schemas/PersonName' }
+      responses:
+        '204': { description: Guardado }
+        '400': { $ref: '#/components/responses/Error' }
+        '401': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+    delete:
+      tags: [organizador]
+      security: [{ adminKey: [] }]
+      summary: Borrar el grupo y todos sus datos (RF-16)
+      responses:
+        '204': { description: Borrado }
+        '401': { $ref: '#/components/responses/Error' }
+
+  /groups/{gid}/admin/draw:
+    parameters: [{ $ref: '#/components/parameters/gid' }]
+    post:
+      tags: [organizador]
+      security: [{ adminKey: [] }]
+      summary: Hacer el sorteo (RF-05) o repetirlo con `redo=true` (RF-06). Repetir pone todos los "ha visto" a falso.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                redo: { type: boolean, default: false }
+      responses:
+        '204': { description: Sorteo hecho }
+        '401': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+    delete:
+      tags: [organizador]
+      security: [{ adminKey: [] }]
+      summary: Deshacer el sorteo para cambiar participantes (RF-06)
+      responses:
+        '204': { description: Deshecho }
+        '401': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+
+  /groups/{gid}/admin/participants/{pid}/release:
+    parameters: [{ $ref: '#/components/parameters/gid' }, { $ref: '#/components/parameters/pid' }]
+    post:
+      tags: [organizador]
+      security: [{ adminKey: [] }]
+      summary: Dejar entrar de nuevo (RF-14). La asignación no cambia; "ha visto" vuelve a falso.
+      responses:
+        '204': { description: Liberado }
+        '401': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
