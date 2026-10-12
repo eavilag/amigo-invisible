@@ -14,8 +14,8 @@
     {
       "binding": "DB",
       "database_name": "amigo-invisible",
-      // Se sustituye por el ID real al crear la base de datos (docs/07-despliegue).
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      // Base de datos de producción (región WEUR). El ID no es secreto: sin credenciales no da acceso.
+      "database_id": "db8f1960-24f1-461e-9dbd-f30fab7ef57d",
       "migrations_dir": "migrations",
     },
   ],
