@@ -11,8 +11,10 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 2 : 4,
+  // El servidor local (workerd) se satura con más procesos y WebKit agota esperas.
+  workers: process.env.CI ? 2 : 3,
   timeout: 60_000,
+  expect: { timeout: 10_000 },
   reporter: [['list'], ['json', { outputFile: 'reports/playwright.json' }], ['html', { open: 'never', outputFolder: 'playwright-report' }]],
   use: {
     baseURL: `http://localhost:${PORT}`,

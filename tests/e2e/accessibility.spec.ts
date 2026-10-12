@@ -34,6 +34,8 @@ test.describe('Accesibilidad y diseño adaptable', () => {
     page,
     browser,
   }) => {
+    // Audita ~16 pantallas en dos temas: necesita más margen que el resto.
+    test.setTimeout(180_000);
     const screens: { label: string; go: (p: Page) => Promise<void> }[] = [];
     await page.goto('/');
     const home = async (p: Page) => void (await p.goto('/'));
