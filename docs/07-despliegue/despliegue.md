@@ -72,4 +72,5 @@ No requiere cambios de código.
 4. `npm run deploy`: el certificado TLS del subdominio nuevo tardó unos minutos en emitirse.
 5. Pruebas de producción `CP-P-01..03`: 6/6 superadas (evidencia en `docs/06-pruebas/evidencias/2026-10-12-produccion`).
 6. Secretos y variable configurados en GitHub; fusión de la PR #1 y primer despliegue automático.
-7. Dirección más amigable: el propietario cambió el subdominio de la cuenta a `familia-avila-gonzalez` y el Worker pasó a llamarse `reyes`. Se descartaron los acortadores externos porque el enlace del grupo es una capacidad secreta (ADR-0006) y quedaría en manos de terceros. Pruebas de producción con la dirección nueva: 6/6.
+7. Se borró el Worker antiguo `amigo-invisible` (la base de datos no se ve afectada).
+8. Dirección más amigable: el propietario cambió el subdominio de la cuenta a `familia-avila-gonzalez` y el Worker pasó a llamarse `reyes`. Se descartaron los acortadores externos porque el enlace del grupo es una capacidad secreta (ADR-0006) y quedaría en manos de terceros. Pruebas de producción con la dirección nueva: 6/6.

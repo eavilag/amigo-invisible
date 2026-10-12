@@ -45,7 +45,7 @@ Empieza por el [índice de documentación](docs/README.md).
 | Requisitos | [Especificación v1.0.0](docs/01-especificacion/especificacion.md) |
 | Experiencia de usuario | [Diseño UX](docs/02-ux/diseno-ux.md) y [prototipo](docs/02-ux/prototipo/index.html) |
 | Arquitectura | [Arquitectura](docs/03-arquitectura/arquitectura.md), [ADRs](docs/03-arquitectura/adr/README.md), [API OpenAPI](docs/03-arquitectura/api/openapi.yaml) |
-| Seguridad | [Modelo de amenazas](docs/04-seguridad/modelo-amenazas.md), [revisión de seguridad](docs/04-seguridad/revision-seguridad-2026-10-12.md) |
+| Seguridad | [Modelo de amenazas](docs/04-seguridad/modelo-amenazas.md), [inventario de secretos](docs/04-seguridad/inventario-secretos.md), [revisión de seguridad](docs/04-seguridad/revision-seguridad-2026-10-12.md) |
 | Plan | [Plan y tareas](docs/05-plan/plan-y-tareas.md) |
 | Pruebas | [Plan de pruebas](docs/06-pruebas/plan-pruebas.md), [matriz de trazabilidad](docs/06-pruebas/matriz-trazabilidad.md) |
 | Operación | [Despliegue](docs/07-despliegue/despliegue.md), [runbook](docs/07-despliegue/runbook.md) |
