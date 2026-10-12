@@ -1,6 +1,6 @@
 | ID | Versión | Estado | Fecha |
 |---|---|---|---|
-| PLAN | 1.1.0 | En ejecución | 2026-10-12 |
+| PLAN | 1.2.0 | Completado (pendientes puertas P2 y P4) | 2026-10-12 |
 
 # Plan técnico y tareas
 
@@ -40,11 +40,12 @@ Desarrollo guiado por pruebas, de dentro afuera: dominio puro → API con prueba
 | T-14 | E2E completos + accesibilidad + tamaños (320 px, texto 200 %) en Chromium y WebKit | RNF-01–05, RNF-14 | CP-E, CP-A | ✅ |
 | T-15 | Script de trazabilidad automática | CONST §4 | — | ✅ |
 | T-16 | CI/CD GitHub Actions + Dependabot | RNF-10, RNF-11, AME-13 | — | ✅ |
-| T-17 | Despliegue en Cloudflare (Puerta P3) + pruebas en producción | RNF-06, RNF-07 | CP-P | ⏳ |
-| T-18 | Documentación final: guía de usuario con capturas, mantenimiento, runbook | — | — | ⏳ |
+| T-17 | Despliegue en Cloudflare (Puerta P3) + pruebas en producción | RNF-06, RNF-07 | CP-P | ✅ |
+| T-18 | Documentación final: guía de usuario con capturas, mantenimiento, runbook | — | — | ✅ |
 
 ## Historial
 | Versión | Fecha | Cambio |
 |---|---|---|
 | 1.0.0 | 2026-10-12 | Plan inicial |
 | 1.1.0 | 2026-10-12 | T-01 a T-16 completadas (rama `feat/implementacion-v1`); pendientes T-17 despliegue y T-18 documentación final |
+| 1.2.0 | 2026-10-12 | T-17 desplegado en Cloudflare con CI/CD y pruebas de producción; T-18 guía con capturas, despliegue, runbook, mantenimiento y plan de pruebas |

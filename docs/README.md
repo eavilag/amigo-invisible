@@ -49,5 +49,5 @@ Este proyecto sigue **Spec Driven Development (SDD)**: la especificación es la 
 |---|---|---|
 | P1 | Requisitos (`SPEC`) | ✅ Aprobada 2026-10-12 (`spec-v1.0.0`) |
 | P2 | Diseño UX y guía de usuario temprana (`UX`, `GUIA`) | En prueba con usuarios mayores |
-| P3 | Plan de despliegue y cuenta en la nube | Pendiente |
+| P3 | Plan de despliegue y cuenta en la nube | ✅ Desplegado 2026-10-12 (pruebas de producción 6/6) |
 | P4 | Pruebas de aceptación en producción | Pendiente |
